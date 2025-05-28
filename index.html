@@ -28,14 +28,13 @@
     /* CSS Variables for easy theme management */
     :root {
       --primary-color: #003366; /* Dark Blue */
-      --secondary-color: #0059b3; /* Medium Blue */
-      --accent-color: #ff9900; /* Orange for highlights */
-      --text-color: #333;
-      --light-text-color: #f0f2f5;
-      /* Improved Background Colors */
-      --bg-light: #eef4f8; /* Slightly cooler and softer background */
-      --bg-dark: #001f3f;
-      --card-bg: #fdfdfd; /* Slightly off-white for cards, adds depth */
+      --secondary-color: #0059B3; /* Medium Blue */
+      --accent-color: #FF9900; /* Orange */
+      --text-color: #333; /* Dark Grey */
+      --light-text-color: #f0f2f5; /* Light Grey/Off-white */
+      --bg-light: #eef4f8; /* Very Light Blue-Grey */
+      --bg-dark: #001f3f; /* Even Darker Blue */
+      --card-bg: #fdfdfd; /* Off-white for cards */
       --shadow-light: 0 4px 12px rgba(0,0,0,0.08);
       --shadow-dark: 0 6px 20px rgba(0,0,0,0.15);
     }
@@ -44,9 +43,9 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-light); /* Applying the new light background color */
+      background-color: var(--bg-light);
       color: var(--text-color);
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     /* Utility Classes */
@@ -61,25 +60,23 @@
       padding: 10px 0;
       font-size: 14px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end; /* Changed to flex-end to align language selector to right */
       flex-wrap: wrap;
       gap: 15px;
       z-index: 1000; /* Ensure it's on top */
       position: relative; /* For z-index to work */
     }
     .top-bar span {
-      display: flex;
-      align-items: center;
+      display: none; /* Hide phone and address spans as requested */
     }
     .top-bar i {
       margin-right: 8px;
       color: var(--accent-color);
     }
     .language-selector {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
+        position: static; /* Changed from absolute to static */
+        transform: translateY(0); /* Reset transform */
+        margin-right: 20px; /* Add some right margin */
         display: flex;
         align-items: center;
         gap: 8px;
@@ -87,21 +84,30 @@
     .language-selector select {
         padding: 5px 8px;
         border-radius: 5px;
-        border: 1px solid var(--accent-color);
+        /* UPDATED: Change border color to match light text color */
+        border: 1px solid var(--light-text-color); 
         background-color: var(--bg-dark);
         color: var(--light-text-color);
         font-size: 14px;
         cursor: pointer;
+        /* Ensure options are visible */
+        -webkit-appearance: menulist-button; /* Restore default browser dropdown arrow */
+        -moz-appearance: menulist-button;
+        appearance: menulist-button;
+    }
+    .language-selector select option {
+        background-color: var(--bg-dark); /* Options background */
+        color: var(--light-text-color); /* Options text color */
     }
 
     /* Sticky Navigation Bar */
     .sticky-nav {
-      background-color: rgba(0, 51, 102, 0.95); /* Primary color with transparency */
+      background-color: var(--primary-color);
       color: white;
       padding: 15px 0;
       position: sticky;
       top: 0;
-      z-index: 100; /* Ensure it stays above other content */
+      z-index: 100;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       transition: background-color 0.3s ease;
     }
@@ -177,13 +183,12 @@
 
     /* Header Section (Hero Area) */
     header {
-      /* Existing background gradient */
-      background: radial-gradient(circle at 30% 30%, var(--primary-color), var(--bg-dark) 70%);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
-      padding: 120px 20px 80px;
+      padding: 100px 20px;
       text-align: center;
       position: relative;
-      overflow: hidden; /* For pseudo-element background pattern and animation */
+      overflow: hidden; /* For pseudo-element background pattern */
     }
 
     /* Overlay for readability over background image (remove if no image) */
@@ -211,7 +216,7 @@
       z-index: 2; /* Ensure it's above the new overlay */
     }
 
-    /* New: Background Animation Layer */
+    /* New: Background Animation Layer (Subtle, professional) */
     header .animated-background {
       content: '';
       position: absolute;
@@ -219,11 +224,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, rgba(0, 89, 179, 0.1), rgba(0, 51, 102, 0.1), rgba(255, 153, 0, 0.1));
+      background: linear-gradient(45deg, rgba(0, 89, 179, 0.1), rgba(0, 51, 102, 0.1), rgba(255, 153, 0, 0.05)); /* Muted gradient for subtle effect */
       background-size: 400% 400%;
-      animation: gradientAnimation 15s ease infinite;
+      animation: gradientAnimation 15s ease infinite; /* Slower animation for sophistication */
       z-index: 0; /* Behind other content and overlays */
-      opacity: 0.7; /* Keep it subtle */
+      opacity: 0.8; /* Keep it subtle */
     }
 
     @keyframes gradientAnimation {
@@ -237,16 +242,16 @@
       z-index: 3; /* Ensure text and button are above all overlays and animation */
     }
 
+
     header h1 {
       font-family: 'Montserrat', sans-serif;
       font-size: 58px;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Stronger shadow for readability */
+      margin-bottom: 10px;
     }
 
     header p {
-      font-size: 24px;
-      color: #cce6ff;
+      font-size: 22px;
+      color: var(--light-text-color);
     }
 
     /* Main Content Container */
@@ -258,15 +263,15 @@
 
     /* General Section Styling */
     .section {
-      background-color: var(--card-bg); /* Applying the new card background color */
-      padding: 40px 30px;
-      border-radius: 12px;
+      background-color: var(--card-bg);
+      padding: 40px;
+      border-radius: 10px;
       margin-bottom: 60px;
       box-shadow: var(--shadow-light);
       transition: transform 0.3s ease-in-out;
     }
     .section:hover {
-      transform: translateY(-5px); /* Subtle lift on hover */
+      transform: translateY(-5px);
     }
 
     .section h2 {
@@ -284,8 +289,8 @@
       left: 50%;
       bottom: -10px;
       transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
+      width: 70px;
+      height: 3px;
       background-color: var(--accent-color);
       border-radius: 2px;
     }
@@ -298,6 +303,37 @@
       margin: 0 auto 20px auto;
     }
 
+    /* Specific style for full-width sections */
+    .full-width-section {
+      width: 100vw; /* Take full viewport width */
+      margin-left: calc(50% - 50vw); /* Center it by offsetting left margin */
+      margin-right: calc(50% - 50vw); /* Ensure it's centered */
+      padding-left: 20px; /* Maintain some padding from the sides */
+      padding-right: 20px;
+      box-sizing: border-box; /* Include padding in width calculation */
+      /* Inherit/re-apply other .section styles */
+      background-color: var(--card-bg);
+      padding-top: 40px; /* Keep vertical padding */
+      padding-bottom: 40px;
+      border-radius: 10px;
+      margin-bottom: 60px;
+      box-shadow: var(--shadow-light);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .full-width-section:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Ensure content inside full-width-section is still constrained for readability */
+    .full-width-section h2,
+    .full-width-section p {
+      max-width: 800px; /* Keep content readable width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
     /* Grid Layout for Services & Features */
     .grid {
       display: grid;
@@ -309,11 +345,11 @@
     }
 
     .grid-item {
-      background-color: var(--bg-light); /* Using the light background for grid items */
+      background-color: white;
       padding: 25px;
       text-align: center;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
       position: relative;
       display: flex; /* Use flexbox for internal content alignment */
@@ -337,7 +373,7 @@
       transform: translateY(0);
     }
     .grid-item:hover {
-      transform: translateY(-8px); /* Lift and shadow on hover */
+      transform: translateY(-5px);
       box-shadow: var(--shadow-dark);
     }
 
@@ -355,7 +391,7 @@
     }
 
     .grid-item h3 {
-      color: var(--secondary-color);
+      color: var(--primary-color);
       margin-bottom: 12px;
       font-size: 22px;
       font-family: 'Montserrat', sans-serif;
@@ -363,7 +399,7 @@
 
     .grid-item p {
       font-size: 16px;
-      color: #555;
+      color: var(--text-color);
       text-align: center; /* Override section p for grid items */
       flex-grow: 1; /* Allow paragraph to grow and take available space */
       margin-bottom: 0; /* Remove default margin from last paragraph */
@@ -376,13 +412,13 @@
       color: white;
       padding: 60px 20px;
       text-align: center;
-      border-radius: 12px;
+      border-radius: 10px;
       margin-bottom: 60px;
       box-shadow: var(--shadow-dark);
     }
     .cta-section h2 {
       color: white; /* Override section h2 color */
-      font-size: 40px;
+      font-size: 36px;
       margin-bottom: 20px;
       font-family: 'Montserrat', sans-serif;
     }
@@ -391,7 +427,7 @@
       content: none;
     }
     .cta-section p {
-      color: #e6f2ff;
+      color: var(--light-text-color);
       font-size: 20px;
       margin-bottom: 30px;
     }
@@ -399,8 +435,8 @@
       display: inline-block;
       background-color: var(--accent-color);
       color: white;
-      padding: 14px 30px;
-      border-radius: 50px;
+      padding: 15px 30px;
+      border-radius: 5px;
       text-decoration: none;
       font-size: 18px;
       font-weight: 600;
@@ -409,7 +445,7 @@
     }
     .cta-button:hover {
       background-color: #e68a00;
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
 
     /* Contact Form Styling */
@@ -417,9 +453,9 @@
       max-width: 700px;
       margin: auto;
       padding: 30px;
-      background-color: var(--card-bg); /* Lighter background for form */
+      background-color: var(--card-bg);
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow-light);
     }
 
     .contact-form input,
@@ -428,10 +464,9 @@
       padding: 12px;
       margin: 10px 0;
       border: 1px solid #ddd;
-      border-radius: 6px;
+      border-radius: 5px;
       font-size: 16px;
       font-family: 'Poppins', sans-serif;
-      transition: border-color 0.3s;
     }
     .contact-form input:focus,
     .contact-form textarea:focus {
@@ -445,7 +480,7 @@
       color: white;
       padding: 14px 25px;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
       font-size: 18px;
       font-weight: 600;
@@ -475,7 +510,7 @@
       text-align: center;
       padding: 40px 15px;
       font-size: 15px;
-      border-top: 5px solid var(--primary-color); /* Add a subtle line */
+      border-top: 3px solid var(--accent-color);
     }
 
     .footer-content {
@@ -498,7 +533,7 @@
       transition: color 0.3s ease;
     }
     .social-links a:hover {
-      color: white;
+      color: var(--light-text-color);
       text-decoration: underline;
     }
     .social-links i {
@@ -508,8 +543,8 @@
     /* LLM Feature Specific Styles */
     .troubleshooting-section {
       background-color: var(--card-bg);
-      padding: 40px 30px;
-      border-radius: 12px;
+      padding: 40px;
+      border-radius: 10px;
       margin-bottom: 60px;
       box-shadow: var(--shadow-light);
     }
@@ -519,7 +554,7 @@
       padding: 12px;
       margin: 10px 0;
       border: 1px solid #ddd;
-      border-radius: 6px;
+      border-radius: 5px;
       font-size: 16px;
       font-family: 'Poppins', sans-serif;
       min-height: 120px;
@@ -531,7 +566,7 @@
       color: white;
       padding: 14px 25px;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
       font-size: 18px;
       font-weight: 600;
@@ -581,8 +616,8 @@
       max-width: 800px;
       margin: 40px auto 20px;
       overflow: hidden;
-      border-radius: 12px;
-      background-color: var(--bg-light);
+      border-radius: 10px;
+      background-color: var(--card-bg);
       box-shadow: var(--shadow-light);
       padding: 30px;
     }
@@ -650,7 +685,7 @@
     }
 
     .slider-controls button {
-        background-color: rgba(0, 51, 102, 0.7);
+        background-color: rgba(0, 51, 102, 0.7); /* Use primary color with transparency */
         color: white;
         border: none;
         border-radius: 50%;
@@ -665,7 +700,7 @@
     }
 
     .slider-controls button:hover {
-        background-color: var(--primary-color);
+        background-color: var(--primary-color); /* Solid primary on hover */
     }
 
     /* Chatbot Styles */
@@ -692,7 +727,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        box-shadow: var(--shadow-dark);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         transition: transform 0.2s ease;
         margin-top: 10px; /* Space between window and button */
     }
@@ -703,8 +738,8 @@
 
     .chat-window {
         background-color: var(--card-bg);
-        border-radius: 12px;
-        box-shadow: var(--shadow-dark);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         width: 350px;
         height: 450px;
         display: flex;
@@ -733,8 +768,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
     .chat-header .close-button {
@@ -933,7 +968,7 @@
         display: none; /* Hide nav links by default on small screens */
         flex-direction: column;
         width: 100%;
-        background-color: rgba(0, 51, 102, 0.98);
+        background-color: var(--primary-color);
         position: absolute;
         top: 100%;
         left: 0;
@@ -1030,9 +1065,6 @@
 <body>
 
   <div class="top-bar">
-    <span><i class="fas fa-phone-alt" aria-hidden="true"></i> <strong data-en="Shatrudhan Singh:" data-hi="शत्रुघ्न सिंह:">Shatrudhan Singh:</strong> <a href="tel:+919891638583" style="color: inherit; text-decoration: none;">+91 9891638583</a></span>
-    <span><i class="fas fa-phone-alt" aria-hidden="true"></i> <strong data-en="Sikander Singh:" data-hi="सिकंदर सिंह:">Sikander Singh:</strong> <a href="tel:+919310813283" style="color: inherit; text-decoration: none;">+91 9310813283</a></span>
-    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span data-en="467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035" data-hi="467/ए गली नंबर 10, चंदर क्वार्टर, रामपुर, त्रिनगर, दिल्ली 110035">467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035</span></span>
     <div class="language-selector">
         <label for="languageSelect" data-en="Language:" data-hi="भाषा:">Language:</label>
         <select id="languageSelect" aria-label="Select Language">
@@ -1063,46 +1095,46 @@
       <div class="animated-background"></div> 
       <h1 data-en="OM Hydraulic Works" data-hi="ओ.एम. हाइड्रोलिक वर्क्स">OM Hydraulic Works</h1>
       <p data-en="Your Trusted Partner for Hydraulic & Injection Molding Machine Solutions" data-hi="हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीन समाधानों के लिए आपके भरोसेमंद पार्टनर">Your Trusted Partner for Hydraulic & Injection Molding Machine Solutions</p>
-      <a href="#contact" class="cta-button" data-en="Get a Free Consultation Today!" data-hi="आज ही मुफ्त परामर्श प्राप्त करें!">Get a Free Consultation Today!</a>
+      <a href="#contact" class="cta-button" target="_blank" rel="noopener noreferrer" data-en="Get a Free Consultation Today!" data-hi="आज ही मुफ्त परामर्श प्राप्त करें!">Get a Free Consultation Today!</a>
     </header>
 
-    <div class="container">
-      <section class="section" id="about">
-        <h2 data-en="About Us" data-hi="हमारे बारे में">About Us</h2>
-        <p data-en="At OM Hydraulic Works, we bring over <strong style='color: var(--secondary-color);'>30 years of unparalleled expertise</strong> in the repair, maintenance, and servicing of hydraulic and injection molding machines. Located in Inderlok, Delhi, our mission is to provide efficient, reliable, and high-quality solutions that minimize your downtime and maximize productivity. We are committed to excellence and customer satisfaction." data-hi="OM Hydraulic Works में, हम हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीनों की मरम्मत, रखरखाव और सर्विसिंग में <strong style='color: var(--secondary-color);'>30 वर्षों से अधिक की अद्वितीय विशेषज्ञता</strong> लाते हैं। इंद्रलोक, दिल्ली में स्थित, हमारा मिशन कुशल, विश्वसनीय और उच्च-गुणवत्ता वाले समाधान प्रदान करना है जो आपके डाउनटाइम को कम करते हैं और उत्पादकता को अधिकतम करते हैं। हम उत्कृष्टता और ग्राहकों की संतुष्टि के लिए प्रतिबद्ध हैं।">At OM Hydraulic Works, we bring over <strong style="color: var(--secondary-color);">30 years of unparalleled expertise</strong> in the repair, maintenance, and servicing of hydraulic and injection molding machines. Located in Inderlok, Delhi, our mission is to provide efficient, reliable, and high-quality solutions that minimize your downtime and maximize productivity. We are committed to excellence and customer satisfaction.</p>
-      </section>
+    <section class="section full-width-section" id="about">
+      <h2 data-en="About Us" data-hi="हमारे बारे में">About Us</h2>
+      <p data-en="At OM Hydraulic Works, we bring over <strong style='color: var(--secondary-color);'>30 years of unparalleled expertise</strong> in the repair, maintenance, and servicing of hydraulic and injection molding machines. Located in Inderlok, Delhi, our mission is to provide efficient, reliable, and high-quality solutions that minimize your downtime and maximize productivity. We are committed to excellence and customer satisfaction." data-hi="OM Hydraulic Works में, हम हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीनों की विशेषज्ञ मरम्मत, रखरखाव और सर्विसिंग में <strong style='color: var(--secondary-color);'>30 वर्षों से अधिक की अद्वितीय विशेषज्ञता</strong> लाते हैं। इंद्रलोक, दिल्ली में स्थित, हमारा मिशन कुशल, विश्वसनीय और उच्च-गुणवत्ता वाले समाधान प्रदान करना है जो आपके डाउनटाइम को कम करते हैं और उत्पादकता को अधिकतम करते हैं। हम उत्कृष्टता और ग्राहकों की संतुष्टि के लिए प्रतिबद्ध हैं।">At OM Hydraulic Works, we bring over <strong style="color: var(--secondary-color);">30 years of unparalleled expertise</strong> in the repair, maintenance, and servicing of hydraulic and injection molding machines. Located in Inderlok, Delhi, our mission is to provide efficient, reliable, and high-quality solutions that minimize your downtime and maximize productivity. We are committed to excellence and customer satisfaction.</p>
+    </section>
 
+    <div class="container">
       <section class="section" id="services">
         <h2 data-en="Our Comprehensive Services" data-hi="हमारी व्यापक सेवाएं">Our Comprehensive Services</h2>
         <p data-en="From complex hydraulic system overhauls to precision injection molding machine calibration, our skilled technicians handle it all." data-hi="जटिल हाइड्रोलिक सिस्टम के ओवरहाल से लेकर सटीक इंजेक्शन मोल्डिंग मशीन कैलिब्रेशन तक, हमारे कुशल तकनीशियन सब कुछ संभालते हैं।">From complex hydraulic system overhauls to precision injection molding machine calibration, our skilled technicians handle it all.</p>
         <div class="grid">
           <div class="grid-item">
-            <img src="images.jpg" alt="Yizumi Injection Molding Machine being serviced" loading="lazy">
+            <img src="images.jpg" alt="यिज़ुमी इंजेक्शन मोल्डिंग मशीन की सर्विसिंग करते हुए तकनीशियन" loading="lazy">
             <h3 data-en="Yizumi Machine Servicing" data-hi="यिज़ुमी मशीन सर्विसिंग">Yizumi Machine Servicing</h3>
             <p data-en="Expert repair and maintenance for Yizumi injection molding machines, ensuring optimal performance." data-hi="इष्टतम प्रदर्शन सुनिश्चित करने के लिए यिज़ुमी इंजेक्शन मोल्डिंग मशीनों की विशेषज्ञ मरम्मत और रखरखाव।">Expert repair and maintenance for Yizumi injection molding machines, ensuring optimal performance.</p>
           </div>
           <div class="grid-item">
-            <img src="download (1).jpg" alt="Arburg Injection Molding Machine repair" loading="lazy">
+            <img src="download (1).jpg" alt="अरबर्ग इंजेक्शन मोल्डिंग मशीन की मरम्मत" loading="lazy">
             <h3>Arburg Machine Repair</h3>
             <p data-en="Specialized services for Arburg injection molding machines, covering diagnostics and comprehensive repairs." data-hi="अरबर्ग इंजेक्शन मोल्डिंग मशीनों के लिए विशेष सेवाएं, जिसमें निदान और व्यापक मरम्मत शामिल हैं।">Specialized services for Arburg injection molding machines, covering diagnostics and comprehensive repairs.</p>
           </div>
           <div class="grid-item">
-            <img src="download.jpg" alt="Supermac Injection Molding Machine maintenance" loading="lazy">
+            <img src="download.jpg" alt="सुपरमैक इंजेक्शन मोल्डिंग मशीन का रखरखाव" loading="lazy">
             <h3 data-en="Supermac Machine Maintenance" data-hi="सुपरमैक मशीन रखरखाव">Supermac Machine Maintenance</h3>
             <p data-en="Routine maintenance and troubleshooting for Supermac injection molding machines to prevent breakdowns." data-hi="खराबी को रोकने के लिए सुपरमैक इंजेक्शन मोल्डिंग मशीनों के लिए नियमित रखरखाव और समस्या निवारण।">Routine maintenance and troubleshooting for Supermac injection molding machines to prevent breakdowns.</p>
           </div>
           <div class="grid-item">
-            <img src="4639075375801404016.png" alt="Hydraulic Machine Sales and Spares" loading="lazy">
+            <img src="4639075375801404016.png" alt="हाइड्रोलिक मशीन बिक्री और स्पेयर पार्ट्स" loading="lazy">
             <h3 data-en="Hydraulic Machine Sales & Spares" data-hi="हाइड्रोलिक मशीन बिक्री और स्पेयर पार्ट्स">Hydraulic Machine Sales & Spares</h3>
             <p data-en="We also deal in the sale of new and used hydraulic machines and provide genuine spare parts." data-hi="हम नई और पुरानी हाइड्रोलिक मशीनों की बिक्री में भी डील करते हैं और वास्तविक स्पेयर पार्ट्स प्रदान करते हैं।">We also deal in the sale of new and used hydraulic machines and provide genuine spare parts.</p>
           </div>
           <div class="grid-item">
-            <img src="7010296115045172623.png" alt="Hydraulic System Repair" loading="lazy">
+            <img src="7010296115045172623.png" alt="हाइड्रोलिक सिस्टम मरम्मत" loading="lazy">
             <h3 data-en="Hydraulic System Repair" data-hi="हाइड्रोलिक सिस्टम मरम्मत">Hydraulic System Repair</h3>
             <p data-en="Expert diagnosis and repair of hydraulic pumps, valves, cylinders, and complex hydraulic circuits." data-hi="हाइड्रोलिक पंप, वाल्व, सिलेंडर और जटिल हाइड्रोलिक सर्किट का विशेषज्ञ निदान और मरम्मत।">Expert diagnosis and repair of hydraulic pumps, valves, cylinders, and complex hydraulic circuits.</p>
           </div>
           <div class="grid-item">
-            <img src="https://cdn.pixabay.com/photo/2021/08/15/20/51/injection-molding-6548294_960_720.jpg" alt="Injection Molding Machine Servicing" loading="lazy">
+            <img src="https://cdn.pixabay.com/photo/2021/08/15/20/51/injection-molding-6548294_960_720.jpg" alt="सामान्य इंजेक्शन मोल्डिंग सर्विसिंग" loading="lazy">
             <h3 data-en="General Injection Molding Servicing" data-hi="सामान्य इंजेक्शन मोल्डिंग सर्विसिंग">General Injection Molding Servicing</h3>
             <p data-en="Comprehensive repair, maintenance, and calibration for all brands of injection molding machines." data-hi="इंजेक्शन मोल्डिंग मशीनों के सभी ब्रांडों के लिए व्यापक मरम्मत, रखरखाव और कैलिब्रेशन।">Comprehensive repair, maintenance, and calibration for all brands of injection molding machines.</p>
           </div>
@@ -1184,12 +1216,12 @@
       <section class="cta-section">
         <h2 data-en="Need Urgent Machine Repair?" data-hi="तत्काल मशीन मरम्मत की आवश्यकता है?">Need Urgent Machine Repair?</h2>
         <p data-en="Don't let equipment downtime impact your production. Contact us now for quick and reliable service!" data-hi="उपकरणों के डाउनटाइम को अपने उत्पादन को प्रभावित न करने दें। त्वरित और विश्वसनीय सेवा के लिए अभी हमसे संपर्क करें!">Don't let equipment downtime impact your production. Contact us now for quick and reliable service!</p>
-        <a href="#contact" class="cta-button" data-en="Request a Service Now!" data-hi="अभी सेवा का अनुरोध करें!">Request a Service Now!</a>
+        <a href="#contact" class="cta-button" target="_blank" rel="noopener noreferrer" data-en="Request a Service Now!" data-hi="अभी सेवा का अनुरोध करें!">Request a Service Now!</a>
       </section>
 
       <section class="section troubleshooting-section">
         <h2 data-en="Machine Troubleshooting Assistant ✨" data-hi="मशीन समस्या निवारण सहायक ✨">Machine Troubleshooting Assistant ✨</h2>
-        <p data-en="Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps." data-hi="अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।">Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps.</p>
+        <p data-en="Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps." data-hi="अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।">Describe the problem you are facing with your machine, and our AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।</p>
         <textarea id="problemDescription" placeholder="Example: My injection molding machine is making unusual noise and the mold is not closing properly." aria-label="Problem Description" data-en-placeholder="Example: My injection molding machine is making unusual noise and the mold is not closing properly." data-hi-placeholder="उदाहरण: मेरी इंजेक्शन मोल्डिंग मशीन असामान्य शोर कर रही है और मोल्ड ठीक से बंद नहीं हो रहा है।"></textarea>
         <button id="getAdviceButton" data-en="Get Troubleshooting Advice ✨" data-hi="समस्या निवारण सलाह प्राप्त करें ✨">Get Troubleshooting Advice ✨</button>
         <div id="troubleshootingResults" class="troubleshooting-results" role="region" aria-live="polite">
@@ -1239,7 +1271,7 @@
         <a href="https://wa.me/919891638583" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
         <a href="https://www.facebook.com/omhydraulicworks" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a>
         <a href="https://twitter.com/omhydraulic" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter</a>
-        <a href="mailto:info@omhydraulicworks.com" aria-label="Email Us"><i class="fas fa-envelope" aria-hidden="true"></i> Email Us</a>
+        <a href="mailto:info@omhydraulicworks.com" target="_blank" rel="noopener noreferrer" aria-label="Email Us"><i class="fas fa-envelope" aria-hidden="true"></i> Email Us</a>
       </div>
       <p><small data-en="Designed and Developed with <i class='fas fa-heart' style='color: #e74c3c;' aria-hidden='true'></i> by OM Hydraulic Works" data-hi="Designed and Developed with <i class='fas fa-heart' style='color: #e74c3c;' aria-hidden='true'></i> by OM Hydraulic Works">Designed and Developed with <i class="fas fa-heart" style="color: #e74c3c;" aria-hidden="true"></i> by OM Hydraulic Works</small></p>
     </div>
@@ -1247,7 +1279,7 @@
 
   <div id="feedbackModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
-      <span class="close-button" aria-label="Close Modal">&times;</span>
+      <span class="close-button" aria-label="Close Modal">×</span>
       <h3 id="modalTitle" data-en="Message Sent!" data-hi="संदेश भेजा गया!">Message Sent!</h3>
       <p id="modalMessage" data-en="Thank you for your message! We will get back to you shortly." data-hi="आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।">Thank you for your message! We will get back to you shortly.</p>
     </div>
@@ -1272,7 +1304,7 @@
     </button>
   </div>
 
-  <script>
+  <script defer>
     // Dynamically update copyright year in the footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -1283,7 +1315,8 @@
     function setupTranslation() {
         document.querySelectorAll('[data-en]').forEach(element => {
             const enText = element.getAttribute('data-en');
-            const key = element.id || element.className + '_' + enText.substring(0, Math.min(enText.length, 10));
+            // Generate a unique key for storing original content, fall back to random string if no ID or data-en
+            const key = element.id || (enText ? element.className + '_' + enText.substring(0, Math.min(enText.length, 10)) : element.className + '_' + Math.random().toString(36).substring(7));
             if (!originalContent[key]) {
                 originalContent[key] = element.innerHTML;
             }
@@ -1291,7 +1324,7 @@
         
         document.querySelectorAll('[data-en-placeholder]').forEach(element => {
             const enPlaceholder = element.getAttribute('data-en-placeholder');
-            const key = element.id + '_placeholder' || element.className + '_placeholder_' + enPlaceholder.substring(0, Math.min(enPlaceholder.length, 10));
+            const key = element.id + '_placeholder' || (enPlaceholder ? element.className + '_placeholder_' + enPlaceholder.substring(0, Math.min(enPlaceholder.length, 10)) : element.className + '_placeholder_' + Math.random().toString(36).substring(7));
             if (!originalContent[key]) {
                 originalContent[key] = element.placeholder;
             }
@@ -1299,7 +1332,7 @@
 
         document.querySelectorAll('[data-en-title]').forEach(element => {
             const enTitle = element.getAttribute('data-en-title');
-            const key = element.id + '_title' || element.className + '_title_' + enTitle.substring(0, Math.min(enTitle.length, 10));
+            const key = element.id + '_title' || (enTitle ? element.className + '_title_' + enTitle.substring(0, Math.min(enTitle.length, 10)) : element.className + '_title_' + Math.random().toString(36).substring(7));
             if (!originalContent[key]) {
                 originalContent[key] = element.title;
             }
@@ -1310,33 +1343,36 @@
     function translateContent(lang) {
         document.querySelectorAll('[data-en]').forEach(element => {
             const text = element.getAttribute(`data-${lang}`);
-            const key = element.id || element.className + '_' + element.getAttribute('data-en').substring(0, Math.min(element.getAttribute('data-en').length, 10));
+            const key = element.id || (element.getAttribute('data-en') ? element.className + '_' + element.getAttribute('data-en').substring(0, Math.min(element.getAttribute('data-en').length, 10)) : element.className + '_' + Math.random().toString(36).substring(7));
             if (text) {
                 element.innerHTML = text;
-            } else {
+            } else if (originalContent[key]) { // Fallback to original content if translation is missing
                 element.innerHTML = originalContent[key];
             }
         });
 
         document.querySelectorAll('[data-en-placeholder]').forEach(element => {
             const placeholder = element.getAttribute(`data-${lang}-placeholder`);
-            const key = element.id + '_placeholder' || element.className + '_placeholder_' + element.getAttribute('data-en-placeholder').substring(0, Math.min(element.getAttribute('data-en-placeholder').length, 10));
+            const key = element.id + '_placeholder' || (element.getAttribute('data-en-placeholder') ? element.className + '_placeholder_' + element.getAttribute('data-en-placeholder').substring(0, Math.min(element.getAttribute('data-en-placeholder').length, 10)) : element.className + '_placeholder_' + Math.random().toString(36).substring(7));
             if (placeholder) {
                 element.placeholder = placeholder;
-            } else {
+            } else if (originalContent[key]) {
                 element.placeholder = originalContent[key];
             }
         });
 
         document.querySelectorAll('[data-en-title]').forEach(element => {
             const title = element.getAttribute(`data-${lang}-title`);
-            const key = element.id + '_title' || element.className + '_title_' + element.getAttribute('data-en-title').substring(0, Math.min(element.getAttribute('data-en-title').length, 10));
+            const key = element.id + '_title' || (element.getAttribute('data-en-title') ? element.className + '_title_' + element.getAttribute('data-en-title').substring(0, Math.min(element.getAttribute('data-en-title').length, 10)) : element.className + '_title_' + Math.random().toString(36).substring(7));
             if (title) {
                 element.title = title;
-            } else {
+            } else if (originalContent[key]) {
                 element.title = originalContent[key];
             }
         });
+
+        // Update the lang attribute of the HTML tag
+        document.documentElement.lang = lang;
     }
 
     // Event listener for language selector
@@ -1422,13 +1458,10 @@
       resultsDiv.style.justifyContent = 'center'; 
 
       try {
-        let chatHistory = [];
         const prompt = `Act as a troubleshooting assistant for a hydraulic or injection molding machine. The user has described the following problem: "${problemDescription}". Provide potential causes and initial troubleshooting steps. Be concise, clear, and actionable. Focus on common issues. If the problem is complex or requires specialized tools, advise contacting a professional. Respond only in English.`;
         
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-        const payload = { contents: chatHistory };
+        const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
         
-        // Canvas runtime will automatically provide the API key if it's an empty string.
         const apiKey = ""; 
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
@@ -1583,7 +1616,7 @@
     const sendMessageButton = document.getElementById('sendMessageButton');
     const clearChatButton = document.getElementById('clearChatButton'); 
 
-    let chatHistory = []; 
+    let chatHistory = []; // Initialize chat history for the chatbot
 
     openChatButton.addEventListener('click', () => {
         chatWindow.classList.add('open');
@@ -1597,7 +1630,7 @@
 
     clearChatButton.addEventListener('click', () => { 
         chatMessages.innerHTML = ''; 
-        chatHistory = []; 
+        chatHistory = []; // Clear chat history as well
         addBotMessage('Hello! How can I assist you with your hydraulic or injection molding machine today?'); 
     });
 
@@ -1631,6 +1664,7 @@
         addUserMessage(userMessage);
         chatInput.value = '';
 
+        // Add user's message to chat history for LLM context
         chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
         const typingIndicatorDiv = document.createElement('div');
@@ -1644,14 +1678,18 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         try {
-            // Construct a more informative prompt for the chatbot
             const currentLang = document.getElementById('languageSelect').value;
-            const contextPrompt = `You are OM Hydraulic Bot, an AI assistant for OM Hydraulic Works. Our company specializes in repair, maintenance, and sales of hydraulic and injection molding machines in Delhi. We have over 30 years of experience. Our services include Yizumi, Arburg, Supermac machine servicing, hydraulic system repair, preventive maintenance, electrical systems, genuine parts, and machine upgrades. Our contact numbers are +91 9891638583 (Shatrudhan Singh) and +91 9310813283 (Sikander Singh). Our address is 467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035.
-            The user's query is: "${userMessage}".
-            Please provide a helpful, concise, and relevant response based on the information provided about OM Hydraulic Works. If the user asks about services, list them. If they ask for contact, provide it. If they ask about general machine issues, you can give basic advice but always recommend contacting our experts for detailed help. Respond in ${currentLang === 'hi' ? 'Hindi' : 'English'}.`;
+            // Define a persistent system prompt or context for the bot
+            const systemContext = `You are OM Hydraulic Bot, an AI assistant for OM Hydraulic Works. Our company specializes in repair, maintenance, and sales of hydraulic and injection molding machines in Delhi. We have over 30 years of experience. Our services include Yizumi, Arburg, Supermac machine servicing, hydraulic system repair, preventive maintenance, electrical systems, genuine parts, and machine upgrades. Our contact numbers are +91 9891638583 (Shatrudhan Singh) and +91 9310813283 (Sikander Singh). Our address is 467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035.
+            Please provide helpful, concise, and relevant responses based on this information. If the user asks about services, list them. If they ask for contact, provide it. If they ask about general machine issues, you can give basic advice but always recommend contacting our experts for detailed help. Respond in ${currentLang === 'hi' ? 'Hindi' : 'English'}.`;
 
-            const payload = { 
-                contents: [{ role: "user", parts: [{ text: contextPrompt }] }] // Send only the latest prompt with context
+            // Prepare the payload for the LLM, including the system context and the entire chat history
+            // We use a "user" role for the system context to ensure it's treated as a guiding prompt.
+            const fullChatPayload = { 
+                contents: [
+                    { role: "user", parts: [{ text: systemContext }] }, // System context as initial user prompt
+                    ...chatHistory // Append actual chat history
+                ] 
             };
             
             // Canvas runtime will automatically provide the API key if it's an empty string.
@@ -1661,12 +1699,15 @@
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(fullChatPayload) // Send the full chat history
             });
 
             const result = await response.json();
 
-            chatMessages.removeChild(typingIndicatorDiv);
+            // Remove typing indicator regardless of success or failure
+            if (chatMessages.contains(typingIndicatorDiv)) {
+                chatMessages.removeChild(typingIndicatorDiv);
+            }
 
             if (result.candidates && result.candidates.length > 0 &&
                 result.candidates[0].content && result.candidates[0].content.parts &&
@@ -1679,6 +1720,7 @@
                 console.error('Gemini API response structure unexpected:', result);
             }
         } catch (error) {
+            // Ensure typing indicator is removed even on network error
             if (chatMessages.contains(typingIndicatorDiv)) {
                 chatMessages.removeChild(typingIndicatorDiv);
             }

@@ -6,12 +6,12 @@
   <title data-en="OM Hydraulic Works - Hydraulic & Injection Molding Machine Repair Experts" data-hi="ओ.एम. हाइड्रोलिक वर्क्स - हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीन मरम्मत विशेषज्ञ">OM Hydraulic Works - Hydraulic & Injection Molding Machine Repair Experts</title>
   <meta name="description" data-en="OM Hydraulic Works specializes in expert repair, maintenance, and servicing of hydraulic and injection molding machines in Delhi, serving clients with over 30 years of experience." data-hi="ओ.एम. हाइड्रोलिक वर्क्स दिल्ली में हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीनों की विशेषज्ञ मरम्मत, रखरखाव और सर्विसिंग में माहिर है, जो 30 से अधिक वर्षों के अनुभव के साथ ग्राहकों को सेवा प्रदान करता है।">
   <meta name="keywords" content="hydraulic repair, injection molding machine repair, machine maintenance, Delhi, Inderlok, hydraulic systems, plastic machinery repair" />
-  
+
   <meta property="og:title" data-en="OM Hydraulic Works - Your Partner in Machine Reliability" data-hi="ओ.एम. हाइड्रोलिक वर्क्स - मशीन विश्वसनीयता में आपका पार्टनर">
   <meta property="og:description" data-en="Trusted experts in hydraulic and injection molding machine repair in Inderlok, Delhi, ensuring top-quality service and prompt solutions." data-hi="इंद्रलोक, दिल्ली में हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीन मरम्मत में विश्वसनीय विशेषज्ञ, उच्च गुणवत्ता वाली सेवा और त्वरित समाधान सुनिश्चित करते हैं।">
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.yourdomain.com" /> 
-  <meta property="og:image" content="https://www.yourdomain.com/images/og-image.jpg" /> 
+  <meta property="og:url" content="https://www.yourdomain.com" />
+  <meta property="og:image" content="https://www.yourdomain.com/images/og-image.jpg" />
   <meta property="og:image:alt" data-en="OM Hydraulic Works logo with hydraulic machine" data-hi="हाइड्रोलिक मशीन के साथ ओ.एम. हाइड्रोलिक वर्क्स का लोगो">
 
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
+
   <style>
     /* CSS Variables for easy theme management */
     :root {
@@ -58,7 +58,6 @@
       background-color: var(--bg-dark);
       color: var(--light-text-color);
       padding: 10px 0;
-      font-size: 14px;
       display: flex;
       justify-content: flex-end; /* Changed to flex-end to align language selector to right */
       flex-wrap: wrap;
@@ -84,13 +83,11 @@
     .language-selector select {
         padding: 5px 8px;
         border-radius: 5px;
-        /* UPDATED: Change border color to match light text color */
-        border: 1px solid var(--light-text-color); 
+        border: 1px solid var(--light-text-color);
         background-color: var(--bg-dark);
         color: var(--light-text-color);
         font-size: 14px;
         cursor: pointer;
-        /* Ensure options are visible */
         -webkit-appearance: menulist-button; /* Restore default browser dropdown arrow */
         -moz-appearance: menulist-button;
         appearance: menulist-button;
@@ -334,8 +331,8 @@
     }
 
 
-    /* Grid Layout for Services & Features */
-    .grid {
+    /* Grid Layout for Services & Why Choose Us */
+    .grid { /* This class is now used for both sections as originally intended */
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
@@ -344,7 +341,7 @@
       align-items: stretch; /* Make all grid items the same height */
     }
 
-    .grid-item {
+    .grid-item { /* Used for both Services and Why Choose Us sections */
       background-color: white;
       padding: 25px;
       text-align: center;
@@ -355,8 +352,13 @@
       display: flex; /* Use flexbox for internal content alignment */
       flex-direction: column; /* Stack content vertically */
       justify-content: space-between; /* Distribute space to push footer text down */
-      min-height: 380px; /* Increased min-height for more consistent card size and text visibility */
+      min-height: 380px; /* Consistent height for service items */
     }
+    /* Adjusted for 'Why Choose Us' items, making them shorter */
+    #why-us .grid-item {
+        min-height: 180px; /* Shorter for Why Choose Us items */
+    }
+
     /* Top border animation on hover */
     .grid-item::before {
       content: '';
@@ -405,6 +407,7 @@
       margin-bottom: 0; /* Remove default margin from last paragraph */
       line-height: 1.5; /* Slightly adjust line height for readability */
     }
+
 
     /* Call to Action Section */
     .cta-section {
@@ -622,10 +625,18 @@
       padding: 30px;
     }
 
+    .testimonial-slider-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      flex-wrap: nowrap;
+    }
+
     .testimonial-item {
+      flex: 0 0 100%;
+      max-width: 100%;
+      box-sizing: border-box;
       text-align: center;
       padding: 0 20px;
-      display: none; /* Controlled by JavaScript */
     }
 
     .testimonial-item p {
@@ -642,24 +653,24 @@
       font-size: 1em;
       margin-top: 10px;
     }
-    
+
     /* Testimonial image styling */
     .testimonial-item .client-photo {
-        width: 100px; /* Adjust size as needed */
+        width: 100px;
         height: 100px;
-        border-radius: 50%; /* Make it circular */
+        border-radius: 50%;
         object-fit: cover;
         margin-bottom: 15px;
-        border: 3px solid var(--accent-color); /* Accent border */
+        border: 3px solid var(--accent-color);
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .slider-dots {
+    .testimonial-dots {
       text-align: center;
       margin-top: 20px;
     }
 
-    .dot {
+    .testimonial-dot {
       display: inline-block;
       height: 10px;
       width: 10px;
@@ -670,11 +681,11 @@
       transition: background-color 0.3s ease;
     }
 
-    .dot.active {
+    .testimonial-dot.active {
       background-color: var(--secondary-color);
     }
 
-    .slider-controls {
+    .testimonial-slider-controls {
         position: absolute;
         top: 50%;
         width: 100%;
@@ -684,8 +695,8 @@
         padding: 0 10px;
     }
 
-    .slider-controls button {
-        background-color: rgba(0, 51, 102, 0.7); /* Use primary color with transparency */
+    .testimonial-slider-controls button {
+        background-color: rgba(0, 51, 102, 0.7);
         color: white;
         border: none;
         border-radius: 50%;
@@ -699,20 +710,20 @@
         justify-content: center;
     }
 
-    .slider-controls button:hover {
-        background-color: var(--primary-color); /* Solid primary on hover */
+    .testimonial-slider-controls button:hover {
+        background-color: var(--primary-color);
     }
 
     /* Chatbot Styles */
     .chatbot-container {
         position: fixed;
-        bottom: 20px; /* Adjusted from top to bottom */
+        bottom: 20px;
         right: 20px;
         z-index: 1000;
         font-family: 'Poppins', sans-serif;
-        display: flex; /* Use flexbox for vertical alignment */
-        flex-direction: column; /* Stack chat window and button vertically */
-        align-items: flex-end; /* Align items to the right */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
     }
 
     .chatbot-button {
@@ -729,7 +740,7 @@
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         transition: transform 0.2s ease;
-        margin-top: 10px; /* Space between window and button */
+        margin-top: 10px;
     }
 
     .chatbot-button:hover {
@@ -750,7 +761,7 @@
         transform: scale(0.8);
         opacity: 0;
         pointer-events: none;
-        margin-bottom: 10px; /* Space between window and button */
+        margin-bottom: 10px;
     }
 
     .chat-window.open {
@@ -980,7 +991,7 @@
         display: flex; /* Show nav links when active */
       }
 
-      .nav-links li {
+      .nav-links li { /* Added for mobile menu centering */
         text-align: center;
         margin: 10px 0;
       }
@@ -997,9 +1008,6 @@
       }
       .section h2 {
         font-size: 32px;
-      }
-      .grid {
-        grid-template-columns: 1fr; /* Stack items on small screens */
       }
       .cta-section h2 {
         font-size: 30px;
@@ -1047,7 +1055,7 @@
       .section h2 {
         font-size: 28px;
       }
-      .grid-item {
+      .grid-item { /* Adjusted padding for grid items on small screens */
         padding: 20px;
       }
       .cta-button {
@@ -1092,7 +1100,7 @@
 
   <main>
     <header id="hero">
-      <div class="animated-background"></div> 
+      <div class="animated-background"></div>
       <h1 data-en="OM Hydraulic Works" data-hi="ओ.एम. हाइड्रोलिक वर्क्स">OM Hydraulic Works</h1>
       <p data-en="Your Trusted Partner for Hydraulic & Injection Molding Machine Solutions" data-hi="हाइड्रोलिक और इंजेक्शन मोल्डिंग मशीन समाधानों के लिए आपके भरोसेमंद पार्टनर">Your Trusted Partner for Hydraulic & Injection Molding Machine Solutions</p>
       <a href="#contact" class="cta-button" target="_blank" rel="noopener noreferrer" data-en="Get a Free Consultation Today!" data-hi="आज ही मुफ्त परामर्श प्राप्त करें!">Get a Free Consultation Today!</a>
@@ -1107,54 +1115,55 @@
       <section class="section" id="services">
         <h2 data-en="Our Comprehensive Services" data-hi="हमारी व्यापक सेवाएं">Our Comprehensive Services</h2>
         <p data-en="From complex hydraulic system overhauls to precision injection molding machine calibration, our skilled technicians handle it all." data-hi="जटिल हाइड्रोलिक सिस्टम के ओवरहाल से लेकर सटीक इंजेक्शन मोल्डिंग मशीन कैलिब्रेशन तक, हमारे कुशल तकनीशियन सब कुछ संभालते हैं।">From complex hydraulic system overhauls to precision injection molding machine calibration, our skilled technicians handle it all.</p>
+        
         <div class="grid">
           <div class="grid-item">
-            <img src="images.jpg" alt="यिज़ुमी इंजेक्शन मोल्डिंग मशीन की सर्विसिंग करते हुए तकनीशियन" loading="lazy">
+            <img src="images.jpg" data-en-alt="Yizumi Injection Molding Machine Servicing Technician" data-hi-alt="यिज़ुमी इंजेक्शन मोल्डिंग मशीन की सर्विसिंग करते हुए तकनीशियन" loading="lazy">
             <h3 data-en="Yizumi Machine Servicing" data-hi="यिज़ुमी मशीन सर्विसिंग">Yizumi Machine Servicing</h3>
             <p data-en="Expert repair and maintenance for Yizumi injection molding machines, ensuring optimal performance." data-hi="इष्टतम प्रदर्शन सुनिश्चित करने के लिए यिज़ुमी इंजेक्शन मोल्डिंग मशीनों की विशेषज्ञ मरम्मत और रखरखाव।">Expert repair and maintenance for Yizumi injection molding machines, ensuring optimal performance.</p>
           </div>
           <div class="grid-item">
-            <img src="download (1).jpg" alt="अरबर्ग इंजेक्शन मोल्डिंग मशीन की मरम्मत" loading="lazy">
-            <h3>Arburg Machine Repair</h3>
+            <img src="download (1).jpg" data-en-alt="Arburg Injection Molding Machine Repair" data-hi-alt="अरबर्ग इंजेक्शन मोल्डिंग मशीन की मरम्मत" loading="lazy">
+            <h3 data-en="Arburg Machine Repair" data-hi="अरबर्ग मशीन मरम्मत">Arburg Machine Repair</h3>
             <p data-en="Specialized services for Arburg injection molding machines, covering diagnostics and comprehensive repairs." data-hi="अरबर्ग इंजेक्शन मोल्डिंग मशीनों के लिए विशेष सेवाएं, जिसमें निदान और व्यापक मरम्मत शामिल हैं।">Specialized services for Arburg injection molding machines, covering diagnostics and comprehensive repairs.</p>
           </div>
           <div class="grid-item">
-            <img src="download.jpg" alt="सुपरमैक इंजेक्शन मोल्डिंग मशीन का रखरखाव" loading="lazy">
+            <img src="download.jpg" data-en-alt="Supermac Injection Molding Machine Maintenance" data-hi-alt="सुपरमैक इंजेक्शन मोल्डिंग मशीन का रखरखाव" loading="lazy">
             <h3 data-en="Supermac Machine Maintenance" data-hi="सुपरमैक मशीन रखरखाव">Supermac Machine Maintenance</h3>
             <p data-en="Routine maintenance and troubleshooting for Supermac injection molding machines to prevent breakdowns." data-hi="खराबी को रोकने के लिए सुपरमैक इंजेक्शन मोल्डिंग मशीनों के लिए नियमित रखरखाव और समस्या निवारण।">Routine maintenance and troubleshooting for Supermac injection molding machines to prevent breakdowns.</p>
           </div>
           <div class="grid-item">
-            <img src="4639075375801404016.png" alt="हाइड्रोलिक मशीन बिक्री और स्पेयर पार्ट्स" loading="lazy">
+            <img src="4639075375801404016.png" data-en-alt="Hydraulic Machine Sales and Spare Parts" data-hi-alt="हाइड्रोलिक मशीन बिक्री और स्पेयर पार्ट्स" loading="lazy">
             <h3 data-en="Hydraulic Machine Sales & Spares" data-hi="हाइड्रोलिक मशीन बिक्री और स्पेयर पार्ट्स">Hydraulic Machine Sales & Spares</h3>
-            <p data-en="We also deal in the sale of new and used hydraulic machines and provide genuine spare parts." data-hi="हम नई और पुरानी हाइड्रोलिक मशीनों की बिक्री में भी डील करते हैं और वास्तविक स्पेयर पार्ट्स प्रदान करते हैं।">We also deal in the sale of new and used hydraulic machines and provide genuine spare parts.</p>
+            <p data-en="We also deal in the sale of new and used hydraulic machines and provide genuine spare parts." data-hi="हम नई और पुरानी हाइड्रोलिक मशीनों की बिक्री में भी डील करते हैं और वास्तविक स्पेयर पार्ट्स प्रदान करते है।">We also deal in the sale of new and used hydraulic machines and provide genuine spare parts.</p>
           </div>
           <div class="grid-item">
-            <img src="7010296115045172623.png" alt="हाइड्रोलिक सिस्टम मरम्मत" loading="lazy">
+            <img src="7010296115045172623.png" data-en-alt="Hydraulic System Repair" data-hi-alt="हाइड्रोलिक सिस्टम मरम्मत" loading="lazy">
             <h3 data-en="Hydraulic System Repair" data-hi="हाइड्रोलिक सिस्टम मरम्मत">Hydraulic System Repair</h3>
             <p data-en="Expert diagnosis and repair of hydraulic pumps, valves, cylinders, and complex hydraulic circuits." data-hi="हाइड्रोलिक पंप, वाल्व, सिलेंडर और जटिल हाइड्रोलिक सर्किट का विशेषज्ञ निदान और मरम्मत।">Expert diagnosis and repair of hydraulic pumps, valves, cylinders, and complex hydraulic circuits.</p>
           </div>
           <div class="grid-item">
-            <img src="https://cdn.pixabay.com/photo/2021/08/15/20/51/injection-molding-6548294_960_720.jpg" alt="सामान्य इंजेक्शन मोल्डिंग सर्विसिंग" loading="lazy">
+            <img src="https://cdn.pixabay.com/photo/2021/08/15/20/51/injection-molding-6548294_960_720.jpg" data-en-alt="General Injection Molding Servicing" data-hi-alt="सामान्य इंजेक्शन मोल्डिंग सर्विसिंग" loading="lazy">
             <h3 data-en="General Injection Molding Servicing" data-hi="सामान्य इंजेक्शन मोल्डिंग सर्विसिंग">General Injection Molding Servicing</h3>
             <p data-en="Comprehensive repair, maintenance, and calibration for all brands of injection molding machines." data-hi="इंजेक्शन मोल्डिंग मशीनों के सभी ब्रांडों के लिए व्यापक मरम्मत, रखरखाव और कैलिब्रेशन।">Comprehensive repair, maintenance, and calibration for all brands of injection molding machines.</p>
           </div>
           <div class="grid-item">
-            <img src="https://cdn.pixabay.com/photo/2018/02/01/18/42/machine-3128473_960_720.jpg" alt="Preventive Maintenance for industrial machinery" loading="lazy">
+            <img src="https://cdn.pixabay.com/photo/2018/02/01/18/42/machine-3128473_960_720.jpg" data-en-alt="Preventive Maintenance for industrial machinery" data-hi-alt="औद्योगिक मशीनरी के लिए निवारक रखरखाव" loading="lazy">
             <h3 data-en="Preventive & Routine Maintenance" data-hi="निवारक और नियमित रखरखाव">Preventive & Routine Maintenance</h3>
             <p data-en="Proactive service plans, scheduled inspections, and preventive measures to ensure optimal machine performance and longevity." data-hi="इष्टतम मशीन प्रदर्शन और दीर्घायु सुनिश्चित करने के लिए सक्रिय सेवा योजनाएं, निर्धारित निरीक्षण और निवारक उपाय।">Proactive service plans, scheduled inspections, and preventive measures to ensure optimal machine performance and longevity.</p>
           </div>
           <div class="grid-item">
-            <img src="https://via.placeholder.com/400x250?text=Electrical+Diagnostics" alt="Electrical Diagnostics and Wiring" loading="lazy">
+            <img src="https://via.placeholder.com/400x250?text=Electrical+Diagnostics" data-en-alt="Electrical Diagnostics and Wiring" data-hi-alt="विद्युत निदान और वायरिंग" loading="lazy">
             <h3 data-en="Electrical & Control Systems" data-hi="विद्युत और नियंत्रण प्रणाली">Electrical & Control Systems</h3>
             <p data-en="Troubleshooting and repair of electrical components, control panels, and automation systems." data-hi="विद्युत घटकों, नियंत्रण पैनलों और स्वचालन प्रणालियों का समस्या निवारण और मरम्मत।">Troubleshooting and repair of electrical components, control पैनलों और स्वचालन प्रणालियों का समस्या निवारण और मरम्मत।</p>
           </div>
           <div class="grid-item">
-            <img src="https://via.placeholder.com/400x250?text=Component+Replacement" alt="Spare Parts and Component Replacement" loading="lazy">
+            <img src="https://via.placeholder.com/400x250?text=Component+Replacement" data-en-alt="Spare Parts and Component Replacement" data-hi-alt="स्पेयर पार्ट्स और घटक प्रतिस्थापन" loading="lazy">
             <h3 data-en="Genuine Parts & Replacement" data-hi="वास्तविक पार्ट्स और प्रतिस्थापन">Genuine Parts & Replacement</h3>
             <p data-en="Sourcing and installation of high-quality, genuine spare parts for all major machine brands." data-hi="सभी प्रमुख मशीन ब्रांडों के लिए उच्च-गुणवत्ता वाले, वास्तविक स्पेयर पार्ट्स की सोर्सिंग और स्थापना।">Sourcing and installation of high-quality, genuine spare parts for all major machine brands.</p>
           </div>
           <div class="grid-item">
-            <img src="https://via.placeholder.com/400x250?text=Machine+Upgrade" alt="Machine Upgrades and Optimization" loading="lazy">
+            <img src="https://via.placeholder.com/400x250?text=Machine+Upgrade" data-en-alt="Machine Upgrades and Optimization" data-hi-alt="मशीन अपग्रेड और अनुकूलन" loading="lazy">
             <h3 data-en="Machine Upgrades & Optimization" data-hi="मशीन अपग्रेड और अनुकूलन">Machine Upgrades & Optimization</h3>
             <p data-en="Enhancing machine efficiency, performance, and integrating modern technologies for better output." data-hi="बेहतर आउटपुट के लिए मशीन दक्षता, प्रदर्शन को बढ़ाना और आधुनिक तकनीकों को एकीकृत करना।">Enhancing machine efficiency, performance, and integrating modern technologies for better output.</p>
           </div>
@@ -1195,23 +1204,22 @@
       <section class="section" id="testimonials">
         <h2 data-en="What Our Clients Say" data-hi="हमारे ग्राहक क्या कहते हैं">What Our Clients Say</h2>
         <div class="testimonial-slider">
-          <div class="testimonial-item">
-            <img src="https://placehold.co/100x100/003366/FFFFFF?text=Sikander" alt="Sikander Singh, Production Manager" class="client-photo" loading="lazy">
-            <p data-en="“OM Hydraulic Works provided exceptional service for our injection molding machine. Their team was professional, prompt, and resolved the issue efficiently. Highly recommended!”" data-hi="“ओ.एम. हाइड्रोलिक वर्क्स ने हमारी इंजेक्शन मोल्डिंग मशीन के लिए असाधारण सेवा प्रदान की। उनकी टीम पेशेवर, त्वरित और समस्या को कुशलता से हल करने वाली थी। अत्यधिक अनुशंसित!”">“OM Hydraulic Works provided exceptional service for our injection molding machine. Their team was professional, prompt, and resolved the issue efficiently. Highly recommended!”</p>
-            <p class="client-name" data-en="- Sikander Singh, Production Manager" data-hi="- सिकंदर सिंह, प्रोडक्शन मैनेजर">- Sikander Singh, Production Manager</p>
-          </div>
-          <div class="testimonial-item">
-            <img src="IMG_1588.JPG" alt="Late Shatrudhan Singh, Factory Owner" class="client-photo" loading="lazy">
-            <p data-en="“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”" data-hi="“हाइड्रोलिक सिस्टम में उनकी विशेषज्ञता बेजोड़ है। उन्होंने एक जटिल मुद्दे का तुरंत निदान किया और हमारी मशीनरी को बहुत कम समय में चालू कर दिया। वास्तव में एक भरोसेमंद पार्टनर।”">“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”</p>
-            <p class="client-name" data-en="- Late Shatrudhan Singh, Factory Owner" data-hi="- स्वर्गीय शत्रुघ्न सिंह, फैक्ट्री मालिक">- Late Shatrudhan Singh, Factory Owner</p>
-          </div>
-          <div class="slider-controls">
-              <button class="prev-testimonial" aria-label="Previous Testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-              <button class="next-testimonial" aria-label="Next Testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-          </div>
+            <div class="testimonial-slider-inner"> <div class="testimonial-item">
+                    <img src="https://placehold.co/100x100/003366/FFFFFF?text=Sikander" alt="Sikander Singh, Production Manager" class="client-photo" loading="lazy">
+                    <p data-en="“OM Hydraulic Works provided exceptional service for our injection molding machine. Their team was professional, prompt, and resolved the issue efficiently. Highly recommended!”" data-hi="“ओ.एम. हाइड्रोलिक वर्क्स ने हमारी इंजेक्शन मोल्डिंग मशीन के लिए असाधारण सेवा प्रदान की। उनकी टीम पेशेवर, त्वरित और समस्या को कुशलता से हल करने वाली थी। अत्यधिक अनुशंसित!”">“OM Hydraulic Works provided exceptional service for our injection molding machine. Their team was professional, prompt, and resolved the issue efficiently. Highly recommended!”</p>
+                    <p class="client-name" data-en="- Sikander Singh, Production Manager" data-hi="- सिकंदर सिंह, प्रोडक्शन मैनेजर">- Sikander Singh, Production Manager</p>
+                </div>
+                <div class="testimonial-item">
+                    <img src="IMG_1588.JPG" alt="Late Shatrudhan Singh, Factory Owner" class="client-photo" loading="lazy">
+                    <p data-en="“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”" data-hi="“हाइड्रोलिक सिस्टम में उनकी विशेषज्ञता बेजोड़ है। उन्होंने एक जटिल मुद्दे का तुरंत निदान किया और हमारी मशीनरी को बहुत कम समय में चालू कर दिया। वास्तव में एक भरोसेमंद पार्टनर।”">“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”</p>
+                    <p class="client-name" data-en="- Late Shatrudhan Singh, Factory Owner" data-hi="- स्वर्गीय शत्रुघ्न सिंह, फैक्ट्री मालिक">- Late Shatrudhan Singh, Factory Owner</p>
+                </div>
+            </div>
+            <div class="testimonial-slider-controls"> <button class="prev-testimonial" aria-label="Previous Testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                <button class="next-testimonial" aria-label="Next Testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+            </div>
         </div>
-        <div class="slider-dots"></div>
-      </section>
+        <div class="testimonial-dots"></div> </section>
 
       <section class="cta-section">
         <h2 data-en="Need Urgent Machine Repair?" data-hi="तत्काल मशीन मरम्मत की आवश्यकता है?">Need Urgent Machine Repair?</h2>
@@ -1232,27 +1240,27 @@
       <section class="section" id="contact">
         <h2 data-en="Get In Touch" data-hi="संपर्क करें">Get In Touch</h2>
         <p data-en="Have questions or need a service? Reach out to us directly or fill out the form below. We're here to help!" data-hi="प्रश्न हैं या सेवा की आवश्यकता है? हमसे सीधे संपर्क करें या नीचे दिया गया फ़ॉर्म भरें। हम मदद के लिए यहां हैं!">Have questions or need a service? Reach out to us directly or fill out the form below. We're here to help!</p>
-        
+
         <div class="text-center mb-4">
-          <p data-en="<strong>Phone:</strong> <a href='tel:+919891638583' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9891638583 (Shatrudhan Singh)</a> | <a href='tel:+919310813283' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9310813283 (Sikander Singh)</a>" data-hi="<strong>फ़ोन:</strong> <a href='tel:+919891638583' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9891638583 (शत्रुघ्न सिंह)</a> | <a href='tel:+919310813283' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9310813283 (सिकंदर सिंह)</a>"><strong>Phone:</strong> <a href="tel:+919891638583" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-phone" aria-hidden="true"></i> +91 9891638583 (Shatrudhan Singh)</a> | <a href="tel:+919310813283" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-phone" aria-hidden="true"></i> +91 9310813283 (Sikander Singh)</a></p>
-          <p data-en="<strong>Address:</strong> <i class='fas fa-map-marker-alt' aria-hidden='true'></i> 467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035" data-hi="<strong>पता:</strong> <i class='fas fa-map-marker-alt' aria-hidden='true'></i> 467/A गली नंबर 10, चंदर क्वार्टर, रामपुर, त्रिनगर, दिल्ली 110035"><strong>Address:</strong> <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035</p>
+          <p data-en="<strong>Phone:</strong> <a href='tel:+919891638583' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9891638583 (<span data-en='Shatrudhan Singh' data-hi='शत्रुघ्न सिंह'>Shatrudhan Singh</span>)</a> | <a href='tel:+919310813283' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9310813283 (<span data-en='Sikander Singh' data-hi='सिकंदर सिंह'>Sikander Singh</span>)</a>" data-hi="<strong>फ़ोन:</strong> <a href='tel:+919891638583' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9891638583 (<span data-en='Shatrudhan Singh' data-hi='शत्रुघ्न सिंह'>शत्रुघ्न सिंह</span>)</a> | <a href='tel:+919310813283' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9310813283 (<span data-en='Sikander Singh' data-hi='सिकंदर सिंह'>सिकंदर सिंह</span>)</a>"><strong>Phone:</strong> <a href="tel:+919891638583" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-phone" aria-hidden="true"></i> +91 9891638583 (<span data-en="Shatrudhan Singh" data-hi="शत्रुघ्न सिंह">Shatrudhan Singh</span>)</a> | <a href="tel:+919310813283" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-phone" aria-hidden="true"></i> +91 9310813283 (<span data-en="Sikander Singh" data-hi="सिकंदर सिंह">Sikander Singh</span>)</a></p>
+          <p data-en="<strong>Address:</strong> <i class='fas fa-map-marker-alt' aria-hidden='true'></i> <span data-en='467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035' data-hi='467/ए गली नंबर 10, चंदर क्वार्टर, रामपुर, त्रिनगर, दिल्ली 110035'>467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035</span>" data-hi="<strong>पता:</strong> <i class='fas fa-map-marker-alt' aria-hidden='true'></i> <span data-en='467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035' data-hi='467/ए गली नंबर 10, चंदर क्वार्टर, रामपुर, त्रिनगर, दिल्ली 110035'>467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035</span>"><strong>Address:</strong> <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span data-en="467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035" data-hi="467/ए गली नंबर 10, चंदर क्वार्टर, रामपुर, त्रिनगर, दिल्ली 110035">467/A Gali No. 10, Chander Quarter, Rampura, Trinagar, Delhi 110035</span></p>
         </div>
 
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.20385966373!2d77.1601669149027!3d28.68114678239062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d023b1a0e71f9%3A0x7d2b1f8e1a7e2b1!2s467%2FA%2C%20Gali%20No.%2010%2C%20Chander%20Quarter%2C%20Rampura%2C%20Tri%20Nagar%2C%20Delhi%2C%20110035!5e0!3m2!1sen!2sin!4v1678912345678!5m2!1sen!2sin" 
-          width="100%" 
-          height="400" 
-          style="border:0; border-radius:10px; margin:30px 0; box-shadow: var(--shadow-light);" 
-          allowfullscreen="" 
-          loading="lazy" 
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.20385966373!2d77.1601669149027!3d28.68114678239062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d023b1a0e71f9%3A0x7d2b1f8e1a7e2b1!2s467%2FA%2C%20Gali%20No.%2010%2C%20Chander%20Quarter%2C%20Rampura%2C%20Tri%20Nagar%2C%20Delhi%2C%20110035!5e0!3m2!1sen!2sin!4v1678912345678!5m2!1sen!2sin"
+          width="100%"
+          height="400"
+          style="border:0; border-radius:10px; margin:30px 0; box-shadow: var(--shadow-light);"
+          allowfullscreen=""
+          loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          data-en-title="Location of OM Hydraulic Works on Google Maps" 
+          data-en-title="Location of OM Hydraulic Works on Google Maps"
           data-hi-title="Google Maps पर OM Hydraulic Works का स्थान"
           title="Location of OM Hydraulic Works on Google Maps">
         </iframe>
 
         <div class="contact-form">
-          <form id="contactForm" action="https://formspree.io/f/exampleFormID" method="POST"> 
+          <form id="contactForm" action="https://formspree.io/f/exampleFormID" method="POST">
             <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" data-en-placeholder="Your Name" data-hi-placeholder="आपका नाम">
             <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" data-en-placeholder="Your Email" data-hi-placeholder="आपका ईमेल">
             <input type="text" name="phone" placeholder="Your Phone Number (Optional)" aria-label="Your Phone Number" data-en-placeholder="Your Phone Number (Optional)" data-hi-placeholder="आपका फ़ोन नंबर (वैकल्पिक)">
@@ -1316,12 +1324,13 @@
         document.querySelectorAll('[data-en]').forEach(element => {
             const enText = element.getAttribute('data-en');
             // Generate a unique key for storing original content, fall back to random string if no ID or data-en
-            const key = element.id || (enText ? element.className + '_' + enText.substring(0, Math.min(enText.length, 10)) : element.className + '_' + Math.random().toString(36).substring(7));
+            // Use dataset.en to ensure we're getting the English text specified
+            const key = element.id || (element.dataset.en ? element.className + '_' + element.dataset.en.substring(0, Math.min(element.dataset.en.length, 10)) : element.className + '_' + Math.random().toString(36).substring(7));
             if (!originalContent[key]) {
                 originalContent[key] = element.innerHTML;
             }
         });
-        
+
         document.querySelectorAll('[data-en-placeholder]').forEach(element => {
             const enPlaceholder = element.getAttribute('data-en-placeholder');
             const key = element.id + '_placeholder' || (enPlaceholder ? element.className + '_placeholder_' + enPlaceholder.substring(0, Math.min(enPlaceholder.length, 10)) : element.className + '_placeholder_' + Math.random().toString(36).substring(7));
@@ -1337,13 +1346,23 @@
                 originalContent[key] = element.title;
             }
         });
+
+        // NEW: Handle 'alt' attributes for images
+        document.querySelectorAll('img[data-en-alt]').forEach(element => {
+            const enAlt = element.getAttribute('data-en-alt');
+            // Use element.src as part of the key for images to make it more unique
+            const key = element.src + '_alt_' + (enAlt ? enAlt.substring(0, Math.min(enAlt.length, 10)) : Math.random().toString(36).substring(7));
+            if (!originalContent[key]) {
+                originalContent[key] = element.alt;
+            }
+        });
     }
 
     // Function to translate content based on selected language
     function translateContent(lang) {
         document.querySelectorAll('[data-en]').forEach(element => {
             const text = element.getAttribute(`data-${lang}`);
-            const key = element.id || (element.getAttribute('data-en') ? element.className + '_' + element.getAttribute('data-en').substring(0, Math.min(element.getAttribute('data-en').length, 10)) : element.className + '_' + Math.random().toString(36).substring(7));
+            const key = element.id || (element.dataset.en ? element.className + '_' + element.dataset.en.substring(0, Math.min(element.dataset.en.length, 10)) : element.className + '_' + Math.random().toString(36).substring(7));
             if (text) {
                 element.innerHTML = text;
             } else if (originalContent[key]) { // Fallback to original content if translation is missing
@@ -1371,6 +1390,17 @@
             }
         });
 
+        // NEW: Translate 'alt' attributes for images
+        document.querySelectorAll('img[data-en-alt]').forEach(element => {
+            const altText = element.getAttribute(`data-${lang}-alt`);
+            const key = element.src + '_alt_' + (element.getAttribute('data-en-alt') ? element.getAttribute('data-en-alt').substring(0, Math.min(element.getAttribute('data-en-alt').length, 10)) : Math.random().toString(36).substring(7));
+            if (altText) {
+                element.alt = altText;
+            } else if (originalContent[key]) {
+                element.alt = originalContent[key];
+            }
+        });
+
         // Update the lang attribute of the HTML tag
         document.documentElement.lang = lang;
     }
@@ -1379,17 +1409,17 @@
     document.getElementById('languageSelect').addEventListener('change', (event) => {
         const selectedLang = event.target.value;
         translateContent(selectedLang);
-        localStorage.setItem('selectedLang', selectedLang); 
+        localStorage.setItem('selectedLang', selectedLang);
     });
 
     // Initialize translation on page load
     document.addEventListener('DOMContentLoaded', () => {
-        setupTranslation(); 
+        setupTranslation();
         const savedLang = localStorage.getItem('selectedLang') || 'en';
         document.getElementById('languageSelect').value = savedLang;
         translateContent(savedLang);
 
-        // Call showTestimonial after DOM is ready and testimonials are present
+        // Call showTestimonial after DOM is ready and elements are present
         showTestimonial(testimonialIndex);
         addBotMessage('Hello! How can I assist you with your hydraulic or injection molding machine today?');
     });
@@ -1454,15 +1484,15 @@
         return;
       }
 
-      resultsDiv.innerHTML = '<p class="loading">Getting advice... Please wait...</p>'; 
-      resultsDiv.style.justifyContent = 'center'; 
+      resultsDiv.innerHTML = '<p class="loading">Getting advice... Please wait...</p>';
+      resultsDiv.style.justifyContent = 'center';
 
       try {
         const prompt = `Act as a troubleshooting assistant for a hydraulic or injection molding machine. The user has described the following problem: "${problemDescription}". Provide potential causes and initial troubleshooting steps. Be concise, clear, and actionable. Focus on common issues. If the problem is complex or requires specialized tools, advise contacting a professional. Respond only in English.`;
-        
+
         const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-        
-        const apiKey = ""; 
+
+        const apiKey = "";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         const response = await fetch(apiUrl, {
@@ -1472,13 +1502,13 @@
         });
 
         const result = await response.json();
-        resultsDiv.style.justifyContent = 'flex-start'; 
+        resultsDiv.style.justifyContent = 'flex-start';
 
         if (result.candidates && result.candidates.length > 0 &&
             result.candidates[0].content && result.candidates[0].content.parts &&
             result.candidates[0].content.parts.length > 0) {
           const text = result.candidates[0].content.parts[0].text;
-          resultsDiv.innerHTML = `<pre>${text}</pre>`; 
+          resultsDiv.innerHTML = `<pre>${text}</pre>`;
         } else {
           resultsDiv.innerHTML = '<p style="color: #e74c3c;">Error getting advice. Please try again.</p>';
           console.error('Gemini API response structure unexpected:', result);
@@ -1561,51 +1591,60 @@
     });
 
 
-    // --- Testimonial Slider ---
+    // --- Testimonial Slider Logic ---
     let testimonialIndex = 0;
     const testimonials = document.querySelectorAll('.testimonial-item');
-    const dotsContainer = document.querySelector('.slider-dots');
-    const prevButton = document.querySelector('.prev-testimonial');
-    const nextButton = document.querySelector('.next-testimonial');
+    const testimonialDotsContainer = document.querySelector('.testimonial-dots');
+    const prevTestimonialButton = document.querySelector('.prev-testimonial');
+    const nextTestimonialButton = document.querySelector('.next-testimonial');
+    const testimonialSliderInner = document.querySelector('.testimonial-slider-inner');
 
     // Create dots
-    dotsContainer.innerHTML = ''; 
-    testimonials.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        dot.addEventListener('click', () => showTestimonial(i));
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = document.querySelectorAll('.dot');
+    if (testimonials.length > 0) {
+        testimonialDotsContainer.innerHTML = '';
+        testimonials.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.classList.add('testimonial-dot');
+            dot.addEventListener('click', () => showTestimonial(i));
+            testimonialDotsContainer.appendChild(dot);
+        });
+    }
+    const testimonialDots = document.querySelectorAll('.testimonial-dots .testimonial-dot');
 
     function showTestimonial(n) {
-        testimonials.forEach(item => item.style.display = 'none');
-        dots.forEach(dot => dot.classList.remove('active'));
+        if (testimonials.length === 0) return;
 
         if (n >= testimonials.length) testimonialIndex = 0;
         else if (n < 0) testimonialIndex = testimonials.length - 1;
         else testimonialIndex = n;
 
-        testimonials[testimonialIndex].style.display = 'block';
-        if (dots[testimonialIndex]) { // Check if dot exists
-            dots[testimonialIndex].classList.add('active');
+        const offset = -testimonialIndex * 100;
+        testimonialSliderInner.style.transform = `translateX(${offset}%)`;
+
+        testimonialDots.forEach(dot => dot.classList.remove('active'));
+        if (testimonialDots[testimonialIndex]) {
+            testimonialDots[testimonialIndex].classList.add('active');
         }
     }
 
-    prevButton.addEventListener('click', () => {
-        showTestimonial(testimonialIndex - 1);
-    });
-
-    nextButton.addEventListener('click', () => {
-        showTestimonial(testimonialIndex + 1);
-    });
+    if (prevTestimonialButton) {
+        prevTestimonialButton.addEventListener('click', () => {
+            showTestimonial(testimonialIndex - 1);
+        });
+    }
+    if (nextTestimonialButton) {
+        nextTestimonialButton.addEventListener('click', () => {
+            showTestimonial(testimonialIndex + 1);
+        });
+    }
 
     // Auto-advance slider
-    setInterval(() => {
-        testimonialIndex++;
-        showTestimonial(testimonialIndex);
-    }, 7000); 
+    if (testimonials.length > 1) {
+        setInterval(() => {
+            testimonialIndex++;
+            showTestimonial(testimonialIndex);
+        }, 7000);
+    }
 
     // --- Chatbot Logic ---
     const chatWindow = document.getElementById('chatWindow');
@@ -1614,24 +1653,24 @@
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const sendMessageButton = document.getElementById('sendMessageButton');
-    const clearChatButton = document.getElementById('clearChatButton'); 
+    const clearChatButton = document.getElementById('clearChatButton');
 
     let chatHistory = []; // Initialize chat history for the chatbot
 
     openChatButton.addEventListener('click', () => {
         chatWindow.classList.add('open');
-        chatInput.focus(); 
-        chatMessages.scrollTop = chatMessages.scrollHeight; 
+        chatInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 
     closeChatButton.addEventListener('click', () => {
         chatWindow.classList.remove('open');
     });
 
-    clearChatButton.addEventListener('click', () => { 
-        chatMessages.innerHTML = ''; 
+    clearChatButton.addEventListener('click', () => {
+        chatMessages.innerHTML = '';
         chatHistory = []; // Clear chat history as well
-        addBotMessage('Hello! How can I assist you with your hydraulic or injection molding machine today?'); 
+        addBotMessage('Hello! How can I assist you with your hydraulic or injection molding machine today?');
     });
 
     sendMessageButton.addEventListener('click', sendMessage);
@@ -1646,7 +1685,7 @@
         messageDiv.classList.add('chat-message', sender);
         messageDiv.textContent = message;
         chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight; 
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     function addBotMessage(message) {
@@ -1685,15 +1724,15 @@
 
             // Prepare the payload for the LLM, including the system context and the entire chat history
             // We use a "user" role for the system context to ensure it's treated as a guiding prompt.
-            const fullChatPayload = { 
+            const fullChatPayload = {
                 contents: [
                     { role: "user", parts: [{ text: systemContext }] }, // System context as initial user prompt
                     ...chatHistory // Append actual chat history
-                ] 
+                ]
             };
-            
+
             // Canvas runtime will automatically provide the API key if it's an empty string.
-            const apiKey = ""; 
+            const apiKey = "";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
             const response = await fetch(apiUrl, {
@@ -1727,7 +1766,7 @@
             addBotMessage(currentLang === 'hi' ? 'चैटबॉट से कनेक्ट करने में त्रुटि। कृपया बाद में पुनः प्रयास करें।' : 'Error connecting to the chatbot. Please try again later.');
             console.error('Error calling Gemini API for chatbot:', error);
         }
-        chatMessages.scrollTop = chatMessages.scrollHeight; 
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   </script>
 

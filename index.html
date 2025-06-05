@@ -120,7 +120,7 @@
 
     .nav-logo {
       font-family: 'Montserrat', sans-serif;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
       color: white;
       text-decoration: none;
@@ -158,10 +158,6 @@
       height: 2px;
       background-color: var(--accent-color);
       transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-color);
     }
 
     .nav-links a:hover::after,
@@ -714,19 +710,28 @@
         background-color: var(--primary-color);
     }
 
-    /* Chatbot Styles */
-    .chatbot-container {
+    /* Floating elements wrapper */
+    .floating-elements-wrapper {
         position: fixed;
-        bottom: 20px;
+        bottom: 20px; /* Base position */
         right: 20px;
         z-index: 1000;
-        font-family: 'Poppins', sans-serif;
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        flex-direction: column; /* Stacks the chat window and button group */
+        align-items: flex-end; /* Aligns to the right */
     }
 
-    .chatbot-button {
+    /* Group for the actual clickable buttons (chatbot, call, email) */
+    .floating-buttons-group {
+        display: flex;
+        flex-direction: column-reverse; /* Stacks buttons from bottom to top: chatbot, call, email */
+        gap: 10px; /* Space between individual buttons */
+        position: relative;
+        z-index: 1001; /* Ensure buttons are above chat window when it's closed/minimized */
+    }
+
+    /* Common style for all floating buttons */
+    .chatbot-button, .floating-contact-button {
         background-color: var(--primary-color);
         color: white;
         border: none;
@@ -739,14 +744,15 @@
         justify-content: center;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        transition: transform 0.2s ease;
-        margin-top: 10px;
+        transition: transform 0.2s ease, background-color 0.3s ease;
     }
 
-    .chatbot-button:hover {
+    .chatbot-button:hover, .floating-contact-button:hover {
         transform: scale(1.05);
+        background-color: var(--secondary-color);
     }
 
+    /* Chat window positioning */
     .chat-window {
         background-color: var(--card-bg);
         border-radius: 10px;
@@ -761,146 +767,19 @@
         transform: scale(0.8);
         opacity: 0;
         pointer-events: none;
-        margin-bottom: 10px;
+
+        position: absolute; /* Position absolute relative to .floating-elements-wrapper */
+        /* Calculate bottom based on 3 buttons (60px each) + 2 gaps (10px each) + a small buffer (e.g., 10px) */
+        bottom: calc( (60px * 3) + (10px * 2) + 10px );
+        right: 0;
+        z-index: 999; /* Below the buttons group when closed, but becomes active on open */
     }
 
     .chat-window.open {
         transform: scale(1);
         opacity: 1;
         pointer-events: auto;
-    }
-
-    .chat-header {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 15px;
-        font-weight: 600;
-        font-size: 18px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .chat-header .close-button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    .chat-header .clear-chat-button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        margin-left: 10px;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: background-color 0.2s ease;
-    }
-
-    .chat-header .clear-chat-button:hover {
-        background-color: rgba(255,255,255,0.2);
-    }
-
-    .chat-messages {
-        flex-grow: 1;
-        padding: 15px;
-        overflow-y: auto;
-        background-color: var(--bg-light);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .chat-message {
-        max-width: 80%;
-        padding: 10px 15px;
-        border-radius: 15px;
-        line-height: 1.4;
-    }
-
-    .chat-message.user {
-        background-color: var(--secondary-color);
-        color: white;
-        align-self: flex-end;
-        border-bottom-right-radius: 2px;
-    }
-
-    .chat-message.bot {
-        background-color: #e0e0e0;
-        color: var(--text-color);
-        align-self: flex-start;
-        border-bottom-left-radius: 2px;
-    }
-
-    .chat-input {
-        display: flex;
-        padding: 10px 15px;
-        border-top: 1px solid #eee;
-        background-color: var(--card-bg);
-    }
-
-    .chat-input input {
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 20px;
-        margin-right: 10px;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .chat-input button {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 20px;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.2s ease;
-    }
-
-    .chat-input button:hover {
-        background-color: var(--secondary-color);
-    }
-
-    .typing-indicator-container {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 10px 15px;
-        background-color: #e0e0e0;
-        border-radius: 15px;
-        align-self: flex-start;
-        border-bottom-left-radius: 2px;
-    }
-
-    .typing-indicator {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background-color: #888;
-        border-radius: 50%;
-        animation: bounce 1.4s infinite ease-in-out;
-        margin: 0 2px;
-    }
-
-    .typing-indicator:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .typing-indicator:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-
-    @keyframes bounce {
-        0%, 80%, 100% { transform: scale(0); }
-        40% { transform: scale(1.0); }
+        z-index: 1002; /* Ensure it's above buttons when open */
     }
 
     /* Custom Modal for Form Feedback */
@@ -1015,26 +894,40 @@
       .cta-section p {
         font-size: 16px;
       }
-      /* Chatbot on small screens */
-      .chatbot-container {
+
+      /* Floating elements on small screens */
+      .floating-elements-wrapper {
           bottom: 10px;
           right: 10px;
-          top: auto; /* Reset top */
-          transform: translateY(0); /* Reset transform */
+          flex-direction: row; /* Arrange buttons group and chat window side-by-side */
+          align-items: flex-end; /* Align to the bottom of the screen */
+          justify-content: flex-end; /* Push to the right */
+          gap: 8px; /* Smaller gap */
+          width: calc(100vw - 20px); /* Allow wrapper to take more width */
       }
+
+      .floating-buttons-group {
+          flex-direction: row; /* Arrange buttons horizontally */
+          gap: 8px; /* Smaller gap between buttons */
+          order: 2; /* Ensure buttons are always at the end (right) of the flex row */
+      }
+
       .chat-window {
-          width: calc(100vw - 40px); /* Full width minus padding */
+          /* Position absolute within wrapper */
+          position: absolute;
+          bottom: calc(10px + 60px + 8px); /* Wrapper bottom + button height + gap */
+          right: 0;
+          width: calc(100vw - 20px); /* Full width minus padding */
+          max-width: 400px; /* Cap max width */
           height: 70vh; /* Take more vertical space */
-          max-width: 400px; /* Limit max width even on small screens */
-          margin-bottom: 0; /* No space between window and button */
-          position: fixed; /* Keep it fixed */
-          bottom: 80px; /* Position above the button */
-          right: 10px;
-          top: auto; /* Reset top for small screens */
-          transform: scale(0.8); /* Reset transform for small screens */
+          left: auto; /* Keep it on the right */
+          order: 1; /* Ensure chat window comes before buttons in the flex row */
       }
-      .chat-window.open {
-          transform: scale(1);
+
+      .chatbot-button, .floating-contact-button {
+          width: 50px; /* Slightly smaller on mobile */
+          height: 50px;
+          font-size: 24px;
       }
     }
 
@@ -1066,6 +959,11 @@
         margin-left: 10px;
         margin-right: 10px;
         padding: 20px 10px;
+      }
+      .floating-elements-wrapper {
+          bottom: 10px;
+          right: 10px;
+          gap: 8px; /* Even less space on very small screens */
       }
     }
   </style>
@@ -1211,7 +1109,7 @@
                 </div>
                 <div class="testimonial-item">
                     <img src="IMG_1588.JPG" alt="Late Shatrudhan Singh, Factory Owner" class="client-photo" loading="lazy">
-                    <p data-en="“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”" data-hi="“हाइड्रोलिक सिस्टम में उनकी विशेषज्ञता बेजोड़ है। उन्होंने एक जटिल मुद्दे का तुरंत निदान किया और हमारी मशीनरी को बहुत कम समय में चालू कर दिया। वास्तव में एक भरोसेमंद पार्टनर।”">“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”</p>
+                    <p data-en="“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”" data-hi="“हाइड्रोलिक सिस्टम में उनकी विशेषज्ञता बेजोड़ है। उन्होंने एक जटिल मुद्दे का तुरंत निदान किया और हमारी मशीनरी को बहुत कम समय में चालू कर दिया। वास्तव में एक भरोसेमंद पार्टनर।”" data-hi-alt="स्वर्गीय शत्रुघ्न सिंह, फैक्ट्री मालिक">“Their expertise in hydraulic systems is unmatched. They quickly diagnosed a complex issue and had our machinery up and running in no time. A truly reliable partner.”</p>
                     <p class="client-name" data-en="- Late Shatrudhan Singh, Factory Owner" data-hi="- स्वर्गीय शत्रुघ्न सिंह, फैक्ट्री मालिक">- Late Shatrudhan Singh, Factory Owner</p>
                 </div>
             </div>
@@ -1229,7 +1127,7 @@
 
       <section class="section troubleshooting-section">
         <h2 data-en="Machine Troubleshooting Assistant ✨" data-hi="मशीन समस्या निवारण सहायक ✨">Machine Troubleshooting Assistant ✨</h2>
-        <p data-en="Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps." data-hi="अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।">Describe the problem you are facing with your machine, and our AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।</p>
+        <p data-en="Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps." data-hi="अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।">Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps.</p>
         <textarea id="problemDescription" placeholder="Example: My injection molding machine is making unusual noise and the mold is not closing properly." aria-label="Problem Description" data-en-placeholder="Example: My injection molding machine is making unusual noise and the mold is not closing properly." data-hi-placeholder="उदाहरण: मेरी इंजेक्शन मोल्डिंग मशीन असामान्य शोर कर रही है और मोल्ड ठीक से बंद नहीं हो रहा है।"></textarea>
         <button id="getAdviceButton" data-en="Get Troubleshooting Advice ✨" data-hi="समस्या निवारण सलाह प्राप्त करें ✨">Get Troubleshooting Advice ✨</button>
         <div id="troubleshootingResults" class="troubleshooting-results" role="region" aria-live="polite">
@@ -1293,7 +1191,8 @@
     </div>
   </div>
 
-  <div class="chatbot-container">
+  <!-- Floating elements wrapper -->
+  <div class="floating-elements-wrapper">
     <div class="chat-window" id="chatWindow">
       <div class="chat-header">
         <span data-en="OM Hydraulic Bot" data-hi="ओ.एम. हाइड्रोलिक बॉट">OM Hydraulic Bot</span>
@@ -1307,10 +1206,20 @@
         <button id="sendMessageButton" data-en="Send" data-hi="भेजें">Send</button>
       </div>
     </div>
-    <button class="chatbot-button" id="openChatButton" aria-label="Open Chat">
-      <i class="fas fa-comments" aria-hidden="true"></i>
-    </button>
+
+    <div class="floating-buttons-group">
+      <button class="chatbot-button" id="openChatButton" aria-label="Open Chat">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+      </button>
+      <a href="tel:+919891638583" class="floating-contact-button" aria-label="Call Us" title="Call Us" data-en-title="Call Us" data-hi-title="हमें कॉल करें">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:info@omhydraulicworks.com" class="floating-contact-button" aria-label="Email Us" title="Email Us" data-en-title="Email Us" data-hi-title="हमें ईमेल करें">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+      </a>
+    </div>
   </div>
+
 
   <script defer>
     // Dynamically update copyright year in the footer
@@ -1347,7 +1256,7 @@
             }
         });
 
-        // NEW: Handle 'alt' attributes for images
+        // Handle 'alt' attributes for images
         document.querySelectorAll('img[data-en-alt]').forEach(element => {
             const enAlt = element.getAttribute('data-en-alt');
             // Use element.src as part of the key for images to make it more unique
@@ -1390,7 +1299,7 @@
             }
         });
 
-        // NEW: Translate 'alt' attributes for images
+        // Translate 'alt' attributes for images
         document.querySelectorAll('img[data-en-alt]').forEach(element => {
             const altText = element.getAttribute(`data-${lang}-alt`);
             const key = element.src + '_alt_' + (element.getAttribute('data-en-alt') ? element.getAttribute('data-en-alt').substring(0, Math.min(element.getAttribute('data-en-alt').length, 10)) : Math.random().toString(36).substring(7));

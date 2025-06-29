@@ -540,7 +540,7 @@
     }
 
     /* LLM Feature Specific Styles */
-    .troubleshooting-section {
+    .troubleshooting-section, .service-recommender-section {
       background-color: var(--card-bg);
       padding: 40px;
       border-radius: 10px;
@@ -548,7 +548,7 @@
       box-shadow: var(--shadow-light);
     }
 
-    .troubleshooting-section textarea {
+    .troubleshooting-section textarea, .service-recommender-section textarea {
       width: calc(100% - 24px);
       padding: 12px;
       margin: 10px 0;
@@ -560,7 +560,7 @@
       resize: vertical;
     }
 
-    .troubleshooting-section button {
+    .troubleshooting-section button, .service-recommender-section button {
       background-color: var(--accent-color);
       color: white;
       padding: 14px 25px;
@@ -573,12 +573,12 @@
       width: 100%;
       margin-top: 15px;
     }
-    .troubleshooting-section button:hover {
+    .troubleshooting-section button:hover, .service-recommender-section button:hover {
       background-color: #e68a00;
       transform: translateY(-2px);
     }
 
-    .troubleshooting-results {
+    .troubleshooting-results, .service-recommender-results {
       margin-top: 30px;
       padding: 20px;
       background-color: var(--bg-light);
@@ -592,12 +592,12 @@
       font-style: italic;
       color: #666;
     }
-    .troubleshooting-results.loading {
+    .troubleshooting-results.loading, .service-recommender-results.loading {
         font-style: normal;
         color: var(--primary-color);
         font-weight: 600;
     }
-    .troubleshooting-results pre {
+    .troubleshooting-results pre, .service-recommender-results pre {
         white-space: pre-wrap; /* Preserve whitespace and wrap text */
         word-wrap: break-word; /* Break long words */
         font-family: 'Poppins', sans-serif;
@@ -710,15 +710,15 @@
         background-color: var(--primary-color);
     }
 
-    /* Floating elements wrapper */
+    /* Floating elements wrapper for Chatbot, Call, Email */
     .floating-elements-wrapper {
         position: fixed;
-        bottom: 20px; /* Base position */
-        right: 20px;
+        bottom: 20px; /* Base position from bottom */
+        right: 20px; /* Base position from right */
         z-index: 1000;
         display: flex;
         flex-direction: column; /* Stacks the chat window and button group */
-        align-items: flex-end; /* Aligns to the right */
+        align-items: flex-end; /* Aligns contents to the right */
     }
 
     /* Group for the actual clickable buttons (chatbot, call, email) */
@@ -770,7 +770,7 @@
 
         position: absolute; /* Position absolute relative to .floating-elements-wrapper */
         /* Calculate bottom based on 3 buttons (60px each) + 2 gaps (10px each) + a small buffer (e.g., 10px) */
-        bottom: calc( (60px * 3) + (10px * 2) + 10px );
+        bottom: calc( (60px * 3) + (10px * 2) + 10px ); /* 3 buttons * 60px + 2 gaps * 10px + 10px buffer */
         right: 0;
         z-index: 999; /* Below the buttons group when closed, but becomes active on open */
     }
@@ -780,6 +780,153 @@
         opacity: 1;
         pointer-events: auto;
         z-index: 1002; /* Ensure it's above buttons when open */
+    }
+
+    .chat-header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px;
+        font-weight: 600;
+        font-size: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .chat-header .contact-icons {
+        display: flex; /* Show contact icons in chat header */
+        gap: 10px;
+    }
+    .chat-header .contact-icons a {
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .chat-header .contact-icons a:hover {
+        color: var(--accent-color);
+    }
+
+    .chat-header .close-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .chat-header .clear-chat-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+    }
+
+    .chat-header .clear-chat-button:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: var(--bg-light);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .chat-message {
+        max-width: 80%;
+        padding: 10px 15px;
+        border-radius: 15px;
+        line-height: 1.4;
+    }
+
+    .chat-message.user {
+        background-color: var(--secondary-color);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 2px;
+    }
+
+    .chat-message.bot {
+        background-color: #e0e0e0;
+        color: var(--text-color);
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 10px 15px;
+        border-top: 1px solid #eee;
+        background-color: var(--card-bg);
+    }
+
+    .chat-input input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        margin-right: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .chat-input button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s ease;
+    }
+
+    .chat-input button:hover {
+        background-color: var(--secondary-color);
+    }
+
+    .typing-indicator-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 15px;
+        background-color: #e0e0e0;
+        border-radius: 15px;
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+    }
+
+    .typing-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: #888;
+        border-radius: 50%;
+        animation: bounce 1.4s infinite ease-in-out;
+        margin: 0 2px;
+    }
+
+    .typing-indicator:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing-indicator:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
     }
 
     /* Custom Modal for Form Feedback */
@@ -894,35 +1041,39 @@
       .cta-section p {
         font-size: 16px;
       }
-
       /* Floating elements on small screens */
       .floating-elements-wrapper {
           bottom: 10px;
           right: 10px;
-          flex-direction: row; /* Arrange buttons group and chat window side-by-side */
-          align-items: flex-end; /* Align to the bottom of the screen */
-          justify-content: flex-end; /* Push to the right */
+          flex-direction: column; /* Stack on mobile */
+          align-items: flex-end; /* Align to the right */
           gap: 8px; /* Smaller gap */
-          width: calc(100vw - 20px); /* Allow wrapper to take more width */
       }
 
       .floating-buttons-group {
-          flex-direction: row; /* Arrange buttons horizontally */
+          flex-direction: row; /* Arrange buttons horizontally on mobile */
           gap: 8px; /* Smaller gap between buttons */
-          order: 2; /* Ensure buttons are always at the end (right) of the flex row */
       }
 
       .chat-window {
-          /* Position absolute within wrapper */
-          position: absolute;
-          bottom: calc(10px + 60px + 8px); /* Wrapper bottom + button height + gap */
-          right: 0;
-          width: calc(100vw - 20px); /* Full width minus padding */
+          /* Position relative to the wrapper, above the button group */
+          position: static; /* Remove absolute for proper stacking */
+          width: calc(100vw - 40px); /* Full width minus padding */
           max-width: 400px; /* Cap max width */
           height: 70vh; /* Take more vertical space */
-          left: auto; /* Keep it on the right */
-          order: 1; /* Ensure chat window comes before buttons in the flex row */
+          margin-bottom: calc(50px + 8px); /* Height of one button + gap to stack above buttons */
+          order: -1; /* Place chat window above buttons in flex column */
       }
+      .chat-window.open {
+          transform: scale(1);
+          opacity: 1;
+          pointer-events: auto;
+          z-index: 1002;
+          /* Ensure the chat window opens correctly above the floating buttons group */
+          bottom: auto; /* Reset any previous bottom value */
+          margin-bottom: calc(50px * 3 + 8px * 2 + 10px); /* Adjust for 3 smaller buttons + 2 gaps + buffer */
+      }
+
 
       .chatbot-button, .floating-contact-button {
           width: 50px; /* Slightly smaller on mobile */
@@ -959,11 +1110,6 @@
         margin-left: 10px;
         margin-right: 10px;
         padding: 20px 10px;
-      }
-      .floating-elements-wrapper {
-          bottom: 10px;
-          right: 10px;
-          gap: 8px; /* Even less space on very small screens */
       }
     }
   </style>
@@ -1126,18 +1272,30 @@
       </section>
 
       <section class="section troubleshooting-section">
-        <h2 data-en="Machine Troubleshooting Assistant ✨" data-hi="मशीन समस्या निवारण सहायक ✨">Machine Troubleshooting Assistant ✨</h2>
-        <p data-en="Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps." data-hi="अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।">Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps.</p>
+        <h2 data-en="Machine Troubleshooting Assistant ✨" data-hi="मशीन समस्या निवारण सहायक ✨">मशीन समस्या निवारण सहायक ✨</h2>
+        <p data-en="Describe the problem you are facing with your machine, and our AI-powered assistant will suggest potential causes and initial troubleshooting steps." data-hi="अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।">अपनी मशीन के साथ जिस समस्या का आप सामना कर रहे हैं, उसका उसका वर्णन करें, और हमारा AI-संचालित सहायक संभावित कारणों और प्रारंभिक समस्या निवारण चरणों का सुझाव देगा।</p>
         <textarea id="problemDescription" placeholder="Example: My injection molding machine is making unusual noise and the mold is not closing properly." aria-label="Problem Description" data-en-placeholder="Example: My injection molding machine is making unusual noise and the mold is not closing properly." data-hi-placeholder="उदाहरण: मेरी इंजेक्शन मोल्डिंग मशीन असामान्य शोर कर रही है और मोल्ड ठीक से बंद नहीं हो रहा है।"></textarea>
-        <button id="getAdviceButton" data-en="Get Troubleshooting Advice ✨" data-hi="समस्या निवारण सलाह प्राप्त करें ✨">Get Troubleshooting Advice ✨</button>
+        <button id="getAdviceButton" data-en="Get Troubleshooting Advice ✨" data-hi="समस्या निवारण सलाह प्राप्त करें ✨">समस्या निवारण सलाह प्राप्त करें ✨</button>
         <div id="troubleshootingResults" class="troubleshooting-results" role="region" aria-live="polite">
-          <span data-en="Advice will appear here..." data-hi="यहां सलाह दिखाई देगी...">Advice will appear here...</span>
+          <span data-en="Advice will appear here..." data-hi="यहां सलाह दिखाई देगी...">यहां सलाह दिखाई देगी...</span>
         </div>
       </section>
 
+      <!-- New: Service Recommender Section -->
+      <section class="section service-recommender-section">
+        <h2 data-en="Service Recommender ✨" data-hi="सेवा सिफ़ारिशकर्ता ✨">सेवा सिफ़ारिशकर्ता ✨</h2>
+        <p data-en="Describe your machine issue or service need, and our AI will recommend the most relevant service(s) from our offerings." data-hi="अपनी मशीन की समस्या या सेवा की आवश्यकता का वर्णन करें, और हमारा AI हमारी पेशकशों में से सबसे प्रासंगिक सेवा (सेवाओं) की सिफारिश करेगा।">अपनी मशीन की समस्या या सेवा की आवश्यकता का वर्णन करें, और हमारा AI हमारी पेशकशों में से सबसे प्रासंगिक सेवा (सेवाओं) की सिफारिश करेगा।</p>
+        <textarea id="serviceNeedDescription" placeholder="Example: My hydraulic press is leaking fluid, and I need routine maintenance." aria-label="Service Need Description" data-en-placeholder="Example: My hydraulic press is leaking fluid, and I need routine maintenance." data-hi-placeholder="उदाहरण: मेरी हाइड्रोलिक प्रेस से तरल पदार्थ लीक हो रहा है, और मुझे नियमित रखरखाव की आवश्यकता है।"></textarea>
+        <button id="getServiceRecommendationButton" data-en="Get Service Recommendation ✨" data-hi="सेवा सिफ़ारिश प्राप्त करें ✨">सेवा सिफ़ारिश प्राप्त करें ✨</button>
+        <div id="serviceRecommendationResults" class="service-recommender-results" role="region" aria-live="polite">
+          <span data-en="Service recommendations will appear here..." data-hi="सेवा सिफ़ारिशें यहां दिखाई देंगी...">सेवा सिफ़ारिशें यहां दिखाई देंगी...</span>
+        </div>
+      </section>
+      <!-- End New: Service Recommender Section -->
+
       <section class="section" id="contact">
-        <h2 data-en="Get In Touch" data-hi="संपर्क करें">Get In Touch</h2>
-        <p data-en="Have questions or need a service? Reach out to us directly or fill out the form below. We're here to help!" data-hi="प्रश्न हैं या सेवा की आवश्यकता है? हमसे सीधे संपर्क करें या नीचे दिया गया फ़ॉर्म भरें। हम मदद के लिए यहां हैं!">Have questions or need a service? Reach out to us directly or fill out the form below. We're here to help!</p>
+        <h2 data-en="Get In Touch" data-hi="संपर्क करें">संपर्क करें</h2>
+        <p data-en="Have questions or need a service? Reach out to us directly or fill out the form below. We're here to help!" data-hi="प्रश्न हैं या सेवा की आवश्यकता है? हमसे सीधे संपर्क करें या नीचे दिया गया फ़ॉर्म भरें। हम मदद के लिए यहां हैं!">प्रश्न हैं या सेवा की आवश्यकता है? हमसे सीधे संपर्क करें या नीचे दिया गया फ़ॉर्म भरें। हम मदद के लिए यहां हैं!</p>
 
         <div class="text-center mb-4">
           <p data-en="<strong>Phone:</strong> <a href='tel:+919891638583' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9891638583 (<span data-en='Shatrudhan Singh' data-hi='शत्रुघ्न सिंह'>Shatrudhan Singh</span>)</a> | <a href='tel:+919310813283' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9310813283 (<span data-en='Sikander Singh' data-hi='सिकंदर सिंह'>Sikander Singh</span>)</a>" data-hi="<strong>फ़ोन:</strong> <a href='tel:+919891638583' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9891638583 (<span data-en='Shatrudhan Singh' data-hi='शत्रुघ्न सिंह'>शत्रुघ्न सिंह</span>)</a> | <a href='tel:+919310813283' style='color: var(--primary-color); text-decoration: none;'><i class='fas fa-phone' aria-hidden='true'></i> +91 9310813283 (<span data-en='Sikander Singh' data-hi='सिकंदर सिंह'>सिकंदर सिंह</span>)</a>"><strong>Phone:</strong> <a href="tel:+919891638583" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-phone" aria-hidden="true"></i> +91 9891638583 (<span data-en="Shatrudhan Singh" data-hi="शत्रुघ्न सिंह">Shatrudhan Singh</span>)</a> | <a href="tel:+919310813283" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-phone" aria-hidden="true"></i> +91 9310813283 (<span data-en="Sikander Singh" data-hi="सिकंदर सिंह">Sikander Singh</span>)</a></p>
@@ -1163,7 +1321,7 @@
             <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" data-en-placeholder="Your Email" data-hi-placeholder="आपका ईमेल">
             <input type="text" name="phone" placeholder="Your Phone Number (Optional)" aria-label="Your Phone Number" data-en-placeholder="Your Phone Number (Optional)" data-hi-placeholder="आपका फ़ोन नंबर (वैकल्पिक)">
             <textarea name="message" rows="6" placeholder="Tell us about your machine repair needs..." required aria-label="Your Message" data-en-placeholder="Tell us about your machine repair needs..." data-hi-placeholder="अपनी मशीन मरम्मत की आवश्यकताओं के बारे में हमें बताएं..."></textarea>
-            <button type="submit" data-en="Send Message" data-hi="संदेश भेजें">Send Message</button>
+            <button type="submit" data-en="Send Message" data-hi="संदेश भेजें">संदेश भेजें</button>
           </form>
         </div>
       </section>
@@ -1186,8 +1344,8 @@
   <div id="feedbackModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
       <span class="close-button" aria-label="Close Modal">×</span>
-      <h3 id="modalTitle" data-en="Message Sent!" data-hi="संदेश भेजा गया!">Message Sent!</h3>
-      <p id="modalMessage" data-en="Thank you for your message! We will get back to you shortly." data-hi="आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।">Thank you for your message! We will get back to you shortly.</p>
+      <h3 id="modalTitle" data-en="Message Sent!" data-hi="संदेश भेजा गया!">संदेश भेजा गया!</h3>
+      <p id="modalMessage" data-en="Thank you for your message! We will get back to you shortly." data-hi="आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।">आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।</p>
     </div>
   </div>
 
@@ -1195,15 +1353,19 @@
   <div class="floating-elements-wrapper">
     <div class="chat-window" id="chatWindow">
       <div class="chat-header">
-        <span data-en="OM Hydraulic Bot" data-hi="ओ.एम. हाइड्रोलिक बॉट">OM Hydraulic Bot</span>
-        <button class="clear-chat-button" id="clearChatButton" data-en="Clear Chat" data-hi="चैट साफ़ करें">Clear Chat</button>
+        <span data-en="OM Hydraulic Bot" data-hi="ओ.एम. हाइड्रोलिक बॉट">ओ.एम. हाइड्रोलिक बॉट</span>
+        <div class="contact-icons">
+          <a href="tel:+919891638583" aria-label="Call Shatrudhan Singh" title="Call Shatrudhan Singh" data-en-title="Call Shatrudhan Singh" data-hi-title="शत्रुघ्न सिंह को कॉल करें"><i class="fas fa-phone"></i></a>
+          <a href="mailto:info@omhydraulicworks.com" aria-label="Email Us" title="Email Us" data-en-title="Email Us" data-hi-title="हमें ईमेल करें"><i class="fas fa-envelope"></i></a>
+        </div>
+        <button class="clear-chat-button" id="clearChatButton" data-en="Clear Chat" data-hi="चैट साफ़ करें">चैट साफ़ करें</button>
         <button class="close-button" id="closeChatButton" aria-label="Close Chat">×</button>
       </div>
       <div class="chat-messages" id="chatMessages">
         </div>
       <div class="chat-input">
         <input type="text" id="chatInput" placeholder="Type your message..." aria-label="Chat input" data-en-placeholder="Type your message..." data-hi-placeholder="अपना संदेश टाइप करें...">
-        <button id="sendMessageButton" data-en="Send" data-hi="भेजें">Send</button>
+        <button id="sendMessageButton" data-en="Send" data-hi="भेजें">भेजें</button>
       </div>
     </div>
 
@@ -1389,15 +1551,16 @@
       const resultsDiv = document.getElementById('troubleshootingResults');
 
       if (!problemDescription.trim()) {
-        resultsDiv.innerHTML = '<p style="color: #e74c3c;">Please describe the machine problem.</p>';
+        resultsDiv.innerHTML = `<p style="color: #e74c3c;">${document.getElementById('problemDescription').getAttribute(`data-${document.getElementById('languageSelect').value}-placeholder`)}</p>`;
         return;
       }
 
-      resultsDiv.innerHTML = '<p class="loading">Getting advice... Please wait...</p>';
+      resultsDiv.innerHTML = `<p class="loading">${document.getElementById('getAdviceButton').getAttribute(`data-${document.getElementById('languageSelect').value}`)}... ${document.getElementById('languageSelect').value === 'hi' ? 'कृपया प्रतीक्षा करें...' : 'Please wait...'}</p>`;
       resultsDiv.style.justifyContent = 'center';
 
       try {
-        const prompt = `Act as a troubleshooting assistant for a hydraulic or injection molding machine. The user has described the following problem: "${problemDescription}". Provide potential causes and initial troubleshooting steps. Be concise, clear, and actionable. Focus on common issues. If the problem is complex or requires specialized tools, advise contacting a professional. Respond only in English.`;
+        const currentLang = document.getElementById('languageSelect').value;
+        const prompt = `Act as a troubleshooting assistant for a hydraulic or injection molding machine. The user has described the following problem: "${problemDescription}". Provide potential causes and initial troubleshooting steps. Be concise, clear, and actionable. Focus on common issues. If the problem is complex or requires specialized tools, advise contacting a professional. Respond only in ${currentLang === 'hi' ? 'Hindi' : 'English'}.`;
 
         const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
 
@@ -1419,15 +1582,63 @@
           const text = result.candidates[0].content.parts[0].text;
           resultsDiv.innerHTML = `<pre>${text}</pre>`;
         } else {
-          resultsDiv.innerHTML = '<p style="color: #e74c3c;">Error getting advice. Please try again.</p>';
+          resultsDiv.innerHTML = `<p style="color: #e74c3c;">${currentLang === 'hi' ? 'सलाह प्राप्त करने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Error getting advice. Please try again.'}</p>`;
           console.error('Gemini API response structure unexpected:', result);
         }
       } catch (error) {
-        resultsDiv.innerHTML = '<p style="color: #e74c3c;">Error getting advice. May be a network issue.</p>';
+        resultsDiv.innerHTML = `<p style="color: #e74c3c;">${currentLang === 'hi' ? 'सलाह प्राप्त करने में त्रुटि। नेटवर्क समस्या हो सकती है।' : 'Error getting advice. May be a network issue.'}</p>`;
         console.error('Error calling Gemini API:', error);
       }
     });
 
+    // --- LLM API with Service Recommender ---
+    document.getElementById('getServiceRecommendationButton').addEventListener('click', async () => {
+        const serviceNeedDescription = document.getElementById('serviceNeedDescription').value;
+        const resultsDiv = document.getElementById('serviceRecommendationResults');
+
+        if (!serviceNeedDescription.trim()) {
+            resultsDiv.innerHTML = `<p style="color: #e74c3c;">${document.getElementById('serviceNeedDescription').getAttribute(`data-${document.getElementById('languageSelect').value}-placeholder`)}</p>`;
+            return;
+        }
+
+        resultsDiv.innerHTML = `<p class="loading">${document.getElementById('getServiceRecommendationButton').getAttribute(`data-${document.getElementById('languageSelect').value}`)}... ${document.getElementById('languageSelect').value === 'hi' ? 'कृपया प्रतीक्षा करें...' : 'Please wait...'}</p>`;
+        resultsDiv.style.justifyContent = 'center';
+
+        try {
+            const currentLang = document.getElementById('languageSelect').value;
+            const prompt = `Act as a service recommender AI assistant for OM Hydraulic Works. OM Hydraulic Works specializes in repair, maintenance, and sales of hydraulic and injection molding machines in Delhi, with over 30 years of experience. Our services include Yizumi machine servicing, Arburg machine repair, Supermac machine maintenance, Hydraulic machine sales & spares, Hydraulic system repair, General injection molding servicing, Preventive & Routine Maintenance, Electrical & Control Systems, Genuine Parts & Replacement, and Machine Upgrades & Optimization. We also deal in the sale of new and used hydraulic machines. The user has described the following issue or service need: "${serviceNeedDescription}". Please recommend the most relevant service(s) based on our offerings. If it doesn't align with our services, advise them to contact us directly. Provide a concise, clear, and actionable response. Respond only in ${currentLang === 'hi' ? 'Hindi' : 'English'}.`;
+
+            const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            resultsDiv.style.justifyContent = 'flex-start';
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                resultsDiv.innerHTML = `<pre>${text}</pre>`;
+            } else {
+                resultsDiv.innerHTML = `<p style="color: #e74c3c;">${currentLang === 'hi' ? 'सिफ़ारिश प्राप्त करने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Error getting recommendation. Please try again.'}</p>`;
+                console.error('Gemini API response structure unexpected:', result);
+            }
+        } catch (error) {
+            if (resultsDiv.contains(resultsDiv.querySelector('.loading'))) {
+                resultsDiv.removeChild(resultsDiv.querySelector('.loading'));
+            }
+            resultsDiv.innerHTML = `<p style="color: #e74c3c;">${currentLang === 'hi' ? 'सिफ़ारिश प्राप्त करने में त्रुटि। नेटवर्क समस्या हो सकती है।' : 'Error getting recommendation. May be a network issue.'}</p>`;
+            console.error('Error calling Gemini API for service recommender:', error);
+        }
+    });
 
     // --- Smooth Scrolling for Navigation ---
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
